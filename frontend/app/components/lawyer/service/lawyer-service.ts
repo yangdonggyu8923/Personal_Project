@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { countLawyerAPI, deleteLawyerByIdAPI, existsIdAPI, findAllLawyersAPI, findLawyerByIdAPI, loginLawyerAPI, logoutLawyerAPI, modifyLawyerAPI } from "./lawyer-api";
+import { countLawyerAPI, crawlingLawyersAPI, deleteLawyerByIdAPI, existsIdAPI, findAllLawyersAPI, findLawyerByIdAPI, loginLawyerAPI, logoutLawyerAPI, modifyLawyerAPI } from "./lawyer-api";
 import { ILawyers } from "../model/lawyers-model";
 
 export const findAllLawyers: any = createAsyncThunk(
@@ -15,9 +15,19 @@ export const findAllLawyers: any = createAsyncThunk(
     }
 )
 
+export const crawlingLawyers: any = createAsyncThunk(
+    'lawyers/crawlingLawyers',
+    async (lawyer: ILawyers) => {
+        console.log('crawlingLawyers : ' + lawyer)
+        const data: any = await crawlingLawyersAPI(lawyer);
+        return data
+    }
+)
+
+
 // 아래 미구현
 export const findLawyerById: any = createAsyncThunk(
-    'Lawyers/findLawyerById',
+    'lawyers/findLawyerById',
     async (id: number) => {
         const data: any = await findLawyerByIdAPI(id);
         return data
@@ -25,15 +35,15 @@ export const findLawyerById: any = createAsyncThunk(
 )
 
 export const modifyLawyer: any = createAsyncThunk(
-    'Lawyers/modifyLawyer',
-    async (Lawyer: ILawyers) => {
-        const data: any = await modifyLawyerAPI(Lawyer);
+    'lawyers/modifyLawyer',
+    async (lawyer: ILawyers) => {
+        const data: any = await modifyLawyerAPI(lawyer);
         return data
     }
 )
 
 export const countLawyers: any = createAsyncThunk(
-    'Lawyers/countLawyer',
+    'lawyers/countLawyer',
     async () => {
         const data: any = await countLawyerAPI();
         return data
@@ -41,7 +51,7 @@ export const countLawyers: any = createAsyncThunk(
 )
 
 export const deleteLawyerById: any = createAsyncThunk(
-    'Lawyers/deleteLawyerById',
+    'lawyers/deleteLawyerById',
     async (id:number) => {
         const data: any = await deleteLawyerByIdAPI(id);
         return data
@@ -49,7 +59,7 @@ export const deleteLawyerById: any = createAsyncThunk(
 )
 
 export const loginLawyer: any = createAsyncThunk(
-    'Lawyers/loginLawyer',
+    'lawyers/loginLawyer',
     async (lawyer: ILawyers) => {
         const data: any = await loginLawyerAPI(lawyer);
         return data
@@ -57,14 +67,14 @@ export const loginLawyer: any = createAsyncThunk(
 )
 
 export const existsId: any = createAsyncThunk(
-    'Lawyers/existsId',
-    async (name: string) => {
-        const data: any = await existsIdAPI(name);
+    'lawyers/existsId',
+    async (username: string) => {
+        const data: any = await existsIdAPI(username);
         return data
     }
 )
 
 export const logoutLawyer: any = createAsyncThunk(
-    'Lawyers/logoutLawyer',
+    'lawyers/logoutLawyer',
     async () => await logoutLawyerAPI()
 )

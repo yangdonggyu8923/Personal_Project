@@ -24,6 +24,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public Messenger save(UserDto userDto) {
+        repository.save(dtoToEntity(userDto));
         return Messenger.builder().message("SUCCESS").build();
     }
 

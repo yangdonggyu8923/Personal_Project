@@ -4,8 +4,5 @@ export interface IUsers {
     password?: string,
     name?: string,
     phone?: string,
-    job?: string,
-    regDate?: string,
-    modDate?: string,
     count?: number,
 }

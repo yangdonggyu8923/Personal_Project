@@ -3,6 +3,7 @@ package com.lawmate.personalproject.user.service;
 import com.lawmate.personalproject.common.component.Messenger;
 import com.lawmate.personalproject.common.service.CommandService;
 import com.lawmate.personalproject.common.service.QueryService;
+import com.lawmate.personalproject.lawyer.model.LawyerDto;
 import com.lawmate.personalproject.user.model.User;
 import com.lawmate.personalproject.user.model.UserDto;
 
@@ -16,6 +17,7 @@ public interface UserService extends CommandService<UserDto>, QueryService<UserD
     Messenger login(UserDto param);
     Boolean logout(String accessToken);
     Boolean existsByUsername(String username);
+
 
     default User dtoToEntity(UserDto dto) {
         return User.builder()

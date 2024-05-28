@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { ILawyers } from "../model/lawyers-model";
-import { countLawyers, deleteLawyerById, existsId, findAllLawyers, findLawyerById, loginLawyer, modifyLawyer } from "./lawyer-service";
+import { countLawyers, crawlingLawyers, deleteLawyerById, existsId, findAllLawyers, findLawyerById, loginLawyer, modifyLawyer } from "./lawyer-service";
 
 const LawyerThunks = [findAllLawyers]
 
@@ -17,36 +17,39 @@ interface IAuth {
 
 interface LawyerState {
     json?: ILawyers,
-    array?: Array<ILawyers>, // = 자바의 ArrayList
+    array?: Array<ILawyers>,
     auth?: IAuth,
 
 }
 
 export const initialState: LawyerState = {
-    json: {} as ILawyers,     // ILawyers Lawyer = new ILawyers, 
-    array: [],          // 자동으로 내부 속성값이 초기화된다 (init)
+    json: {} as ILawyers, 
+    array: [],
     auth: {} as IAuth,
 
 }
 
-export const lawyerSlice = createSlice({  // DB Lawyers테이블의 내부, 액시오스로 전달
+export const lawyerSlice = createSlice({
     name: "lawyers",
-    initialState, // name, initialState = 속성
+    initialState,
     reducers: {
-        // handlePassword: (state: any, { payload }) => { state.json.password = payload },
-
+        handleSample: (state:any, {payload}) => {state.json.lawyerNo= payload},
+        handlePassword: (state: any, { payload }) => { state.json.password = payload },
+        handleLaw: (state: any, { payload }) => { 
+            console.log("Reducer handleLaw called with payload:", payload)
+            state.json.law = payload }
     },
-    extraReducers: builder => { // reducers, extraReducers = 기능
+    extraReducers: builder => {
         const { pending, rejected } = status;
 
         builder
+        .addCase(crawlingLawyers.fulfilled, (state: any, { payload }: any) => { state.array = payload })
         .addCase(findAllLawyers.fulfilled, (state: any, { payload }: any) => { state.array = payload })
         .addCase(findLawyerById.fulfilled, (state: any, { payload }: any) => { state.json = payload })
         .addCase(countLawyers.fulfilled, (state: any, { payload }: any) => { state.count = payload })
         .addCase(modifyLawyer.fulfilled, (state: any, { payload }: any) => { state.json = payload })
         .addCase(deleteLawyerById.fulfilled, (state: any, { payload }: any) => { state.json = payload })
-        .addCase(existsId.fulfilled, (state: any, { payload }: any) => { state.json = payload })
-            
+        .addCase(existsId.fulfilled, (state: any, { payload }: any) => { state.json = payload })      
     }
 })
 
@@ -56,6 +59,7 @@ export const getAllLawyers = (state: any) => {
     console.log(JSON.stringify(state.lawyer.array))
     return state.lawyer.array;
 }
+export const crawling = (state:any) => (state.lawyer.array)
 export const getOneLawyer = (state: any) => (state.lawyer.json)
 export const getCountLawyers = (state: any) => (state.lawyer.count)
 export const deleteOneLawyer = (state: any) => (state.lawyer.json)
@@ -64,6 +68,6 @@ export const existsLawyer = (state: any) => {
     return state.lawyer.json
 }
 
-export const {  } = lawyerSlice.actions
+export const { handleLaw, handlePassword, handleSample } = lawyerSlice.actions
 
 export default lawyerSlice.reducer; // 위는 각각의 reducers 여기선 다 합쳐져서 s가 사라진다.

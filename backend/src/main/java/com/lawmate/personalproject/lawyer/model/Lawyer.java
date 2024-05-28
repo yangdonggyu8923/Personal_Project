@@ -17,8 +17,11 @@ public class Lawyer {
     @Column(name = "lawyer_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String username;
+    private String password;
     private String name;
-    private String subject;
+    private String law;
+    private String lawyerNo;
 
 
 }

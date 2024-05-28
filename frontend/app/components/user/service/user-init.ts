@@ -6,8 +6,5 @@ export const initialState: IUsers = {
     password: "",
     name: "",
     phone: "",
-    job: "",
-    regDate: "",
-    modDate: "",
     count: 0,
 }

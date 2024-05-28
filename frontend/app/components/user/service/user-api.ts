@@ -92,3 +92,14 @@ export const logoutUserAPI = async () => {
         return error
     }
 }
+
+export const saveUserAPI = async (user: IUsers) => {
+    try {
+        const response = await instance().post('/users/save', user)
+        console.log('logoutAPI 결과 : '+ response.data)
+        return response.data
+    } catch (error) {
+        console.log(error)
+        return error
+    }
+}

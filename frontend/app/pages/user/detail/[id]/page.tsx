@@ -42,9 +42,6 @@ export default function UserDetailPage({params}:any){
     <span>비밀번호 : </span><Input type="password" name="password" placeholder={oneUser.password} onChange={updatePassword}></Input><br />
     <span>이름 : </span><Typography textAlign="center" sx={{fontSize:"1.2rem"}}>{oneUser.name}</Typography>
     <span>전화번호 : </span><Input type="text" name="phone" placeholder={oneUser.phone} onChange={updatePhone}></Input><br />
-    <span>직업 : </span><Input type="text" name="job" placeholder={oneUser.job} onChange={updateJob}></Input><br />
-    {/* <span>작성일자 : </span><Typography textAlign="center" sx={{fontSize:"1.2rem"}}>{oneUser.regDate}</Typography>
-    <span>수정일자 : </span><Typography textAlign="center" sx={{fontSize:"1.2rem"}}>{oneUser.modDate}</Typography> */}
     <Button onClick={handleModifyUser}>수정</Button>
     <Button onClick={handleDeleteUser}>탈퇴</Button>
     </>)

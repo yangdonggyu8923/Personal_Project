@@ -1,9 +1,8 @@
 package com.lawmate.personalproject.lawyer;
+import com.lawmate.personalproject.common.component.Messenger;
 import com.lawmate.personalproject.common.component.PageRequestVo;
-import com.lawmate.personalproject.lawyer.model.Lawyer;
 import com.lawmate.personalproject.lawyer.model.LawyerDto;
 import com.lawmate.personalproject.lawyer.service.LawyerServiceImpl;
-import com.lawmate.personalproject.user.model.UserDto;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
@@ -26,20 +25,40 @@ public class LawyerController {
 
     private final LawyerServiceImpl service;
 
-
-
+    @PostMapping(path = "/save")
+    public ResponseEntity<Messenger> save(@RequestBody LawyerDto lawyerDto) {
+        log.info("입력받은 Lawyer 정보 : { }" + lawyerDto);
+        return ResponseEntity.ok(service.save(lawyerDto));
+    }
     @GetMapping("/list")
     public ResponseEntity<List<LawyerDto>> findAll() {
-        log.info(service.findAll().toString());
+        log.info("입력받은 Lawyer 정보 : { }" + service.findAll().toString());
         return ResponseEntity.ok(service.findAll());
     }
-    @PostMapping("/save")
-    public ResponseEntity<List<Lawyer>> saveLawyers(@RequestBody List<Lawyer> lawyers) throws IOException {
-        return ResponseEntity.ok(service.save(lawyers));
+    @GetMapping("/crawl")
+    public ResponseEntity<Messenger> crawl() throws IOException {
+        log.info("크롤링 실행");
+        service.crawl();
+        return ResponseEntity.ok(Messenger.builder().message("SUCCESS").build());
+    }
+    @GetMapping("/count")
+    public ResponseEntity<Long> count(){
+        return ResponseEntity.ok(service.count());
     }
 
-    @GetMapping("/count")
-    public ResponseEntity<Long> count(PageRequestVo vo){
-        return ResponseEntity.ok(service.count());
+    @PutMapping("/modify")
+    public ResponseEntity<Messenger> modify(@RequestBody LawyerDto lawyerDto) {
+        log.info("입력받은 Lawyer 정보 : { }" + lawyerDto);
+        return ResponseEntity.ok(service.modify(lawyerDto));
+    }
+    @GetMapping("/detail")
+    public ResponseEntity<LawyerDto> findById(@RequestParam("id") Long id) {
+        log.info("입력받은 Lawyer 정보 : { }" + id);
+        return ResponseEntity.ok(service.findById(id).orElseGet(LawyerDto::new));
+    }
+    @DeleteMapping("/delete")
+    public ResponseEntity<Messenger> deleteById(@RequestParam("id") Long id){
+        log.info("입력받은 Lawyer 정보 : { }" + id);
+        return ResponseEntity.ok(service.deleteById(id));
     }
 }

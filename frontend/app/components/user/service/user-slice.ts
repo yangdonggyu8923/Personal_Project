@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { countUsers, deleteUserById, existsId, findAllUsers, findUserById, loginUser, modifyUser } from "./user-service";
+import { countUsers, deleteUserById, existsId, findAllUsers, findUserById, loginUser, modifyUser, saveUser } from "./user-service";
 import { IUsers } from "../model/users-model";
 
 const userThunks = [findAllUsers]
@@ -48,6 +48,7 @@ export const userSlice = createSlice({  // DB users테이블의 내부, 액시�
             .addCase(deleteUserById.fulfilled, (state: any, { payload }: any) => { state.json = payload })
             .addCase(loginUser.fulfilled, (state: any, { payload }: any) => { state.auth = payload })
             .addCase(existsId.fulfilled, (state: any, { payload }: any) => { state.json = payload })
+            .addCase(saveUser.fulfilled, (state: any, { payload }: any) => { state.json = payload })
     }
 })
 

@@ -33,7 +33,7 @@ public class UserController {
     }
     @GetMapping("/list")
     public ResponseEntity<List<UserDto>> findAll() {
-        log.info(service.findAll().toString());
+        log.info("입력받은 User 정보 : { }"+service.findAll().toString());
         return ResponseEntity.ok(service.findAll());
     }
     @GetMapping("/detail")
@@ -47,7 +47,7 @@ public class UserController {
         return ResponseEntity.ok(service.deleteById(id));
     }
     @GetMapping("/count")
-    public ResponseEntity<Long> count(PageRequestVo vo){
+    public ResponseEntity<Long> count(){
         return ResponseEntity.ok(service.count());
     }
 

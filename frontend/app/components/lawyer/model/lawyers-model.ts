@@ -1,6 +1,9 @@
 export interface ILawyers{
     id?: number;
+    username?: string;
+    password?: string;
     name?: string;
-    subject?: string;
+    law?: string;
+    lawyerNo?: string;
     count?: number;
 }

@@ -13,9 +13,17 @@ export const findAllLawyersAPI = async (page :number)=>{
     }
 }
 
+export const crawlingLawyersAPI = async (lawyer: ILawyers) => {
+    try {
+        console.log(` 크롤링API에 넘어온 파라미터 : ${JSON.stringify(lawyer)}`)
+        const response = await instance().get('/lawyers/crawl')
+        return response.data
+    } catch (error) {
+        console.log(error)
+        return error
+    }
+}
 
-
-// 아래 미구현
 export const findLawyerByIdAPI = async (id: number) => {
     try {
         const response = await instance().get('/lawyers/detail', {
@@ -30,7 +38,7 @@ export const findLawyerByIdAPI = async (id: number) => {
 
 export const modifyLawyerAPI = async (lawyer: ILawyers) => {
     try {
-        const response = (await instance().put('/lawyers/modify', lawyer))
+        const response = await instance().put('/lawyers/modify', lawyer)
         return response.data
     } catch (error) {
         console.log(error)
@@ -73,10 +81,10 @@ export const loginLawyerAPI = async (lawyer: ILawyers) => {
     }
 }
 
-export const existsIdAPI = async (name: string) => {
+export const existsIdAPI = async (username: string) => {
     try {
         const response = await instance().get('/lawyers/exists-name',
-            { params: { name } })
+            { params: { username } })
         return response.data
     } catch (error) {
         console.log(error)

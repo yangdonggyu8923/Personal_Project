@@ -16,10 +16,9 @@ const JoinPage: NextPage = () =>  {
     password: "",
     name: "",
     phone: "",
-    job: "",
   })
 
-  const { username, password, name, phone, job } = inputs;
+  const { username, password, name, phone } = inputs;
   const handleChange = (e: any) => {
     const { value, name } = e.target;
     setInputs({
@@ -33,12 +32,18 @@ const JoinPage: NextPage = () =>  {
   const handleSubmit = (e:any) => {
     e.preventDefault()
     const url = `${process.env.NEXT_PUBLIC_API_URL}/users/save`
-    const data = { username, password, name, phone, job} // data = requestbody
-    const config = AxiosConfig()
+    const data = { username, password, name, phone }
+    const config = {
+      headers:{
+        "Cache-Control": "no-cache",
+        "Content-Type": "application/json",
+         Authorization: `Bearer blah ~` ,
+        "Access-Control-Allow-Origin": "*",
+    }}
     axios.post(url, data, config)
       .then(res => {
-        alert("response가 가져온 ID : " + JSON.stringify(res.data)) // response.responsebody = res.data = hashmap
-        router.push(`${PG.USER}/login`)
+        alert("response가 가져온 ID : " + JSON.stringify(res.data))
+        router.push("http://localhost:3000/")
       })
   }
 
@@ -58,15 +63,9 @@ const JoinPage: NextPage = () =>  {
       <label htmlFor="phone"><b>Phone Number</b></label>
       <input type="text" placeholder="Enter Phone Number" name="phone" onChange={handleChange} value={phone} required /><br />
 
-      <label htmlFor="job"><b>Job</b></label>
-      <input type="text" placeholder="Enter Job" name="job" onChange={handleChange} value={job} required /><br />
-
-      {/* <label>
-        <input type="checkbox" defaultChecked={true} name="remember" style={{ marginBottom: "15px" }} /> Remember me
-      </label> */}
-      
+     
+    
       <div className="clearfix">
-        {/* <button type="button" className="cancelbtn" >Cancel</button><br /> */}
         <button type="submit" className="signupbtn" onClick={handleSubmit}>회원가입</button>
       </div>
     </div>

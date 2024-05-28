@@ -26,10 +26,10 @@ export default function LinkButton ({id, title, path}:ILinkButton) {
 }
 
 export const linkButtonTitles = [
-    {id:1,title:'회원가입',path:`${PG.USER}/join`},
-    {id:2, title:'카운터', path:`${PG.DEMO}/redux-counter`},
-    {id:3, title:'게시글목록', path:`${PG.ARTICLE}/list`},
-    {id:4, title:'게시판목록', path:`${PG.BOARD}/list`},
+    {id:1, title:'회원가입',path:`${PG.USER}/join`},
+    {id:2, title:'변호사가입',path:`${PG.LAWYER}/save`},
+    {id:3, title:'변호사목록', path:`${PG.LAWYER}/list`} ,
+    {id:4, title:'회원목록', path:`${PG.USER}/list`} ,
     {id:5, title:'마이페이지', path:`${PG.USER}/detail/${token? jwtDecode<any>(token).userId:0}`},
-    {id:6, title:'변호사목록', path:`${PG.LAWYER}/list`} 
+    // {id:6, title:'변호사페이지', path:`${PG.LAWYER}/detail/${token? jwtDecode<any>(token).userId:0}`},
 ];

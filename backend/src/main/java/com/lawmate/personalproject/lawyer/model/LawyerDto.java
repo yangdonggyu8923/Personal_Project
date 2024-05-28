@@ -15,6 +15,9 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class LawyerDto {
     private Long id;
+    private String username;
+    private String password;
     private String name;
-    private String subject;
+    private String law;
+    private String lawyerNo;
 }

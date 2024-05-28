@@ -22,6 +22,24 @@ export default function LawyerColumns(): GridColDef[] {
             flex: 0.04,
             minWidth: 30,
             sortable: false,
+            field: 'username',
+            headerName: '아이디',
+            renderCell: ({row}:CellType) => <Typography textAlign="center" sx={{fontSize:"1.2rem"}}>
+                <Link href={`${PG.LAWYER}/detail/${row.id}`} className="underline">{row.username}</Link>
+            </Typography>
+        },
+        {
+            flex: 0.04,
+            minWidth: 30,
+            sortable: false,
+            field: 'password',
+            headerName: '비밀번호',
+            renderCell: () => <>********</>
+        },
+        {
+            flex: 0.04,
+            minWidth: 30,
+            sortable: false,
             field: 'name',
             headerName: '이름',
             renderCell: ({row}:CellType) => <Typography textAlign="center" sx={{fontSize:"1.2rem"}}>{row.name}</Typography>
@@ -30,9 +48,17 @@ export default function LawyerColumns(): GridColDef[] {
             flex: 0.04,
             minWidth: 30,
             sortable: false,
-            field: 'subject',
-            headerName: '담당법률',
-            renderCell: ({row}:CellType) => <Typography textAlign="center" sx={{fontSize:"1.2rem"}}>{row.subject}</Typography>
-        }
+            field: 'law',
+            headerName: '담당분야',
+            renderCell: ({row}:CellType) => <Typography textAlign="center" sx={{fontSize:"1.2rem"}}>{row.law}</Typography>
+        },
+        {
+            flex: 0.04,
+            minWidth: 30,
+            sortable: false,
+            field: 'lawyerNo',
+            headerName: '자격번호',
+            renderCell: ({row}:CellType) => <Typography textAlign="center" sx={{fontSize:"1.2rem"}}>{row.lawyerNo}</Typography>
+        },
     ]
 }

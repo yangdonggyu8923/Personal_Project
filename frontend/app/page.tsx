@@ -73,7 +73,7 @@ const LoginPage = () => {
               console.log('서버에서 넘어온 토큰 2 : ' + parseCookies().accessToken)
               console.log('jwtDecode(토큰) 디코드 : ')
               console.log(jwtDecode<any>(parseCookies().accessToken))
-              router.push(`${PG.BOARD}/list`)
+              router.push(`${PG.LAWYER}/list`)
               router.refresh()
             })
             .catch((err: any) => {

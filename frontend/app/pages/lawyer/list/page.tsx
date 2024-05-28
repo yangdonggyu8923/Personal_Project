@@ -1,9 +1,12 @@
 'use client'
+import { ILawyers } from "@/app/components/lawyer/model/lawyers-model"
 import LawyerColumns from "@/app/components/lawyer/module/lawyer-columns"
-import { countLawyers, findAllLawyers } from "@/app/components/lawyer/service/lawyer-service"
-import { getAllLawyers, getCountLawyers } from "@/app/components/lawyer/service/lawyer-slice"
+import { countLawyers, crawlingLawyers, findAllLawyers } from "@/app/components/lawyer/service/lawyer-service"
+import { crawling, getAllLawyers, getCountLawyers } from "@/app/components/lawyer/service/lawyer-slice"
 import { DataGrid } from "@mui/x-data-grid"
+import axios from "axios"
 import { NextPage } from "next"
+import { useRouter } from "next/navigation"
 import { useEffect } from "react"
 import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
@@ -11,11 +14,17 @@ import { useDispatch } from "react-redux"
 const LawyerPage: NextPage = () => {
     const dispatch = useDispatch()
     const allLawyer: [] = useSelector(getAllLawyers)
-    const cntLawyer = useSelector(getCountLawyers);
+    const cntLawyer = useSelector(getCountLawyers)
+    const router = useRouter()
+
+    const handleCrawlClick = async () => {
+      dispatch(crawlingLawyers());
+      router.refresh();
+  };
 
     useEffect(()=>{
         dispatch(findAllLawyers(1)),
-        dispatch(countLawyers())
+        dispatch(countLawyers())  
     },[])
 
     return(<>
@@ -27,6 +36,7 @@ const LawyerPage: NextPage = () => {
         checkboxSelection
       />}
     </div>
+    <button onClick={handleCrawlClick}>크롤링</button>
     <div>변호사 회원 수 : {cntLawyer} 명 </div>
     </>)
 }
