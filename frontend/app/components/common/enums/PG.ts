@@ -4,5 +4,6 @@ export const enum PG{
     DEMO='/pages/demo',
     COUNT='/pages/counter',
     ARTICLE='/pages/article',
-    LAWYER='/pages/lawyer'
+    LAWYER='/pages/lawyer',
+    CRAWLER='/pages/crawler'
 }

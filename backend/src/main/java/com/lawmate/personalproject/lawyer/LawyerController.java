@@ -1,6 +1,5 @@
 package com.lawmate.personalproject.lawyer;
 import com.lawmate.personalproject.common.component.Messenger;
-import com.lawmate.personalproject.common.component.PageRequestVo;
 import com.lawmate.personalproject.lawyer.model.LawyerDto;
 import com.lawmate.personalproject.lawyer.service.LawyerServiceImpl;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -60,5 +59,18 @@ public class LawyerController {
     public ResponseEntity<Messenger> deleteById(@RequestParam("id") Long id){
         log.info("입력받은 Lawyer 정보 : { }" + id);
         return ResponseEntity.ok(service.deleteById(id));
+    }
+
+    @PostMapping("/update")
+    public ResponseEntity<Messenger> update(@RequestBody LawyerDto param){
+        log.info("입력받은 정보 : {}", param );
+        return ResponseEntity.ok(service.update(param));
+    }
+
+    @GetMapping("/logout")
+    public ResponseEntity<Boolean> logout(@RequestHeader("Authorization") String accessToken){
+        log.info("1- logout request : {}", accessToken);
+        var flag = service.logout(accessToken); // 토큰이 있으면 false, 없으면 true
+        return ResponseEntity.ok(flag);
     }
 }

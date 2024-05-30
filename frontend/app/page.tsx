@@ -73,8 +73,8 @@ const LoginPage = () => {
               console.log('서버에서 넘어온 토큰 2 : ' + parseCookies().accessToken)
               console.log('jwtDecode(토큰) 디코드 : ')
               console.log(jwtDecode<any>(parseCookies().accessToken))
-              router.push(`${PG.LAWYER}/list`)
-              router.refresh()
+              router.push(`${PG.USER}/list`)
+              location.replace(`${PG.USER}/list`);
             })
             .catch((err: any) => {
               console.log('로그인 실패' + err)
@@ -172,14 +172,14 @@ const LoginPage = () => {
             href="#"
             className="text-xs text-gray-500 hover:text-gray-900 text-end w-full mt-2"
           >
-            Forget Password?
+            {/* Forget Password? */}
           </a>
         </div>
         <div className="mt-8">
           <button
             onClick={handleSubmit}
             className="bg-blue-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-blue-600">
-            Login
+            로그인
           </button>
         </div>
         <a
@@ -207,20 +207,20 @@ const LoginPage = () => {
                 />
               </svg>
             </div>
-            <div className="flex w-full justify-center">
+            {/* <div className="flex w-full justify-center">
               <h1 className="whitespace-nowrap text-gray-600 font-bold">
                 Sign in with Google
               </h1>
-            </div>
+            </div> */}
           </div>
         </a>
         <div className="mt-4 flex items-center w-full text-center">
           <Link
-            href="http://localhost:3000/pages/user/register"
+            href={`${PG.LAWYER}/login`}
             className="text-xs text-gray-500 capitalize text-center w-full"
           >
-            Don&apos;t have any account yet?
-            <span className="text-blue-700"> Sign Up</span>
+            변호사인가요?
+            <span className="text-blue-700"> 변호사 로그인</span>
           </Link>
         </div>
       </div>

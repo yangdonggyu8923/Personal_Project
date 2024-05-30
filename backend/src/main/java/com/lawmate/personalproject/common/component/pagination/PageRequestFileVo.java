@@ -1,4 +1,4 @@
-//package com.lawmate.personalproject.common.component;
+//package com.lawmate.personalproject.common.component.pagination;
 //
 //import com.james.api.article.model.ArticleDto;
 //import lombok.AllArgsConstructor;

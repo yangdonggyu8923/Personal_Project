@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { countUsers, deleteUserById, existsId, findAllUsers, findUserById, loginUser, modifyUser, saveUser } from "./user-service";
+import { countUsers, deleteUserById, existsId, findAllUsers, findUserById, loginUser, modifyUser, saveUser, updateUser } from "./user-service";
 import { IUsers } from "../model/users-model";
 
 const userThunks = [findAllUsers]
@@ -17,27 +17,27 @@ interface IAuth {
 
 interface UserState {
     json?: IUsers,
-    array?: Array<IUsers>, // = 자바의 ArrayList
+    array?: Array<IUsers>,
     auth?: IAuth,
 
 }
 
 export const initialState: UserState = {
-    json: {} as IUsers,     // IUsers user = new IUsers, 
-    array: [],          // 자동으로 내부 속성값이 초기화된다 (init)
+    json: {} as IUsers, 
+    array: [],
     auth: {} as IAuth,
 
 }
 
-export const userSlice = createSlice({  // DB users테이블의 내부, 액시오스로 전달
+export const userSlice = createSlice({
     name: "users",
-    initialState, // name, initialState = 속성
+    initialState,
     reducers: {
         handlePassword: (state: any, { payload }) => { state.json.password = payload },
         handlePhone: (state: any, { payload }) => { state.json.phone = payload },
         handleJob: (state: any, { payload }) => { state.json.job = payload },
     },
-    extraReducers: builder => { // reducers, extraReducers = 기능
+    extraReducers: builder => {
         const { pending, rejected } = status;
 
         builder
@@ -49,10 +49,10 @@ export const userSlice = createSlice({  // DB users테이블의 내부, 액시�
             .addCase(loginUser.fulfilled, (state: any, { payload }: any) => { state.auth = payload })
             .addCase(existsId.fulfilled, (state: any, { payload }: any) => { state.json = payload })
             .addCase(saveUser.fulfilled, (state: any, { payload }: any) => { state.json = payload })
+            .addCase(updateUser.fulfilled, (state: any, { payload }: any) => { state.json = payload })
     }
 })
 
-// DB users 테이블의 바깥
 export const getAllUsers = (state: any) => {
     console.log('-- Before useSelector --')
     console.log(JSON.stringify(state.user.array))

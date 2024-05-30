@@ -19,7 +19,7 @@ const LawyerPage: NextPage = () => {
 
     const handleCrawlClick = async () => {
       dispatch(crawlingLawyers());
-      router.refresh();
+      location.reload()
   };
 
     useEffect(()=>{

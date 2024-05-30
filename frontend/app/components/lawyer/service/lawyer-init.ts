@@ -5,7 +5,10 @@ export const initialState: ILawyers = {
     username: "",
     password: "",
     name: "",
+    phone: "",
     law: "",
     lawyerNo: "",
+    office: "",
+    address: "",
     count: 0
 }

@@ -1,12 +1,11 @@
 package com.lawmate.personalproject.user.service;
 
-import com.lawmate.personalproject.common.component.JwtProvider;
+import com.lawmate.personalproject.common.component.security.JwtProvider;
 import com.lawmate.personalproject.common.component.Messenger;
 import com.lawmate.personalproject.user.model.User;
 import com.lawmate.personalproject.user.model.UserDto;
 import com.lawmate.personalproject.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +20,7 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService{
     private final UserRepository repository;
     private final JwtProvider jwtProvider;
+
 
     @Override
     public Messenger save(UserDto userDto) {
@@ -50,6 +50,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public Messenger modify(UserDto userDto) {
         repository.save(dtoToEntity(userDto));
+
         return Messenger.builder()
                 .message("SUCCESS")
                 .build();
@@ -95,11 +96,13 @@ public class UserServiceImpl implements UserService{
 
     @Transactional
     @Override
-    public Boolean logout(String accessToken) {
-        Long id = 1L;
-        String deletedToken = "";
-        repository.modifyTokenById(id, deletedToken);
-        return repository.findById(id).get().getToken().equals(deletedToken);
+    public Boolean logout(String token) {
+        String accessToken = token != null && token.startsWith("Bearer ") ?
+                token.substring(7) : "undefined";
+        Long id = jwtProvider.getPayload(accessToken).get("userId", Long.class);
+        String deleteToken = "";
+        repository.modifyTokenById(id,deleteToken);
+        return repository.findById(id).get().getToken().equals("");
     }
 
     @Override
@@ -107,4 +110,22 @@ public class UserServiceImpl implements UserService{
         return repository.existsByUsername(username);
     }
 
+    @Transactional
+    @Override
+    public Messenger update(UserDto userDto) {
+     User user = repository.findById(userDto.getId()).get();
+        if (userDto.getUsername() != null && !userDto.getUsername().equals("")) {
+            user.setUsername(userDto.getUsername());
+            user.setName(userDto.getName());
+        }
+
+        user.setPassword(userDto.getPassword());
+        user.setPhone(userDto.getPhone());
+        repository.save(user);
+
+        return repository.findById(userDto.getId()).get().equals(user) ?
+                Messenger.builder().message("SUCCESS").build() :
+                Messenger.builder().message("FAILURE").build();
+    }
 }
+

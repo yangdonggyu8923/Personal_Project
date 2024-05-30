@@ -1,4 +1,4 @@
-package com.lawmate.personalproject.common.component;
+package com.lawmate.personalproject.common.component.files;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

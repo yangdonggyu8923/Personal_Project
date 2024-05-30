@@ -20,8 +20,14 @@ public class Lawyer {
     private String username;
     private String password;
     private String name;
+    private String phone;
     private String law;
     private String lawyerNo;
+    private String token;
+
+    private String imgUrl;
+    private String office;
+    private String address;
 
 
 }

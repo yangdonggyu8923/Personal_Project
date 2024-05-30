@@ -1,5 +1,6 @@
-package com.lawmate.personalproject.common.component;
+package com.lawmate.personalproject.common.component.security;
 
+import com.lawmate.personalproject.lawyer.model.LawyerDto;
 import com.lawmate.personalproject.user.model.UserDto;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -23,6 +24,7 @@ public class JwtProvider {
     @Value("${jwt.iss}")
     private String issuer;
     private final SecretKey secretKey;
+
     Instant expiredDate = Instant.now().plus(1, ChronoUnit.DAYS);
 
     public JwtProvider(@Value("${jwt.secret}") String secretKey){
@@ -38,6 +40,22 @@ public class JwtProvider {
                 .claim("sub", "james")
                 .claim("username", dto.getUsername())
                 .claim("userId", dto.getId())
+                .compact();
+
+        log.info("로그인 성공으로 발급된 토큰 : " + token);
+        return token;
+
+    }
+
+    public String createLawyerToken(LawyerDto dto){
+
+        String token = Jwts.builder()
+                .issuer(issuer)
+                .signWith(secretKey)
+                .expiration(Date.from(expiredDate))
+                .claim("sub", "james")
+                .claim("username", dto.getUsername())
+                .claim("lawyerId", dto.getId())
                 .compact();
 
         log.info("로그인 성공으로 발급된 토큰 : " + token);

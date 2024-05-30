@@ -1,8 +1,6 @@
 package com.lawmate.personalproject.user;
 
 import com.lawmate.personalproject.common.component.Messenger;
-import com.lawmate.personalproject.common.component.PageRequestVo;
-import com.lawmate.personalproject.user.model.User;
 import com.lawmate.personalproject.user.model.UserDto;
 import com.lawmate.personalproject.user.service.UserServiceImpl;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -13,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
@@ -43,7 +40,7 @@ public class UserController {
     }
     @DeleteMapping("/delete")
     public ResponseEntity<Messenger> deleteById(@RequestParam("id") Long id){
-        log.info("입력받은 User 정보 : { }" + id);
+        log.info("입력받은 UserDelete 정보 : { }" + id);
         return ResponseEntity.ok(service.deleteById(id));
     }
     @GetMapping("/count")
@@ -62,5 +59,11 @@ public class UserController {
         log.info("1- logout request : {}", accessToken);
         var flag = service.logout(accessToken); // 토큰이 있으면 false, 없으면 true
         return ResponseEntity.ok(flag);
+    }
+
+    @PostMapping("/update")
+    public ResponseEntity<Messenger> update(@RequestBody UserDto param){
+        log.info("입력받은 정보 : {}", param );
+        return ResponseEntity.ok(service.update(param));
     }
 }

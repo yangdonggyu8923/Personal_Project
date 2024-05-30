@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { ILawyers } from "../model/lawyers-model";
-import { countLawyers, crawlingLawyers, deleteLawyerById, existsId, findAllLawyers, findLawyerById, loginLawyer, modifyLawyer } from "./lawyer-service";
+import { countLawyers, crawlingLawyers, deleteLawyerById, existsId, findAllLawyers, findLawyerById, loginLawyer, modifyLawyer, updateLawyer } from "./lawyer-service";
 
-const LawyerThunks = [findAllLawyers]
+const lawyerThunks = [findAllLawyers]
 
 const status = {
     pending: 'pending',
@@ -35,9 +35,7 @@ export const lawyerSlice = createSlice({
     reducers: {
         handleSample: (state:any, {payload}) => {state.json.lawyerNo= payload},
         handlePassword: (state: any, { payload }) => { state.json.password = payload },
-        handleLaw: (state: any, { payload }) => { 
-            console.log("Reducer handleLaw called with payload:", payload)
-            state.json.law = payload }
+        handleLaw: (state: any, { payload }) => { state.json.law = payload }
     },
     extraReducers: builder => {
         const { pending, rejected } = status;
@@ -47,17 +45,22 @@ export const lawyerSlice = createSlice({
         .addCase(findAllLawyers.fulfilled, (state: any, { payload }: any) => { state.array = payload })
         .addCase(findLawyerById.fulfilled, (state: any, { payload }: any) => { state.json = payload })
         .addCase(countLawyers.fulfilled, (state: any, { payload }: any) => { state.count = payload })
+        .addCase(loginLawyer.fulfilled, (state: any, { payload }: any) => { state.auth = payload })
         .addCase(modifyLawyer.fulfilled, (state: any, { payload }: any) => { state.json = payload })
         .addCase(deleteLawyerById.fulfilled, (state: any, { payload }: any) => { state.json = payload })
-        .addCase(existsId.fulfilled, (state: any, { payload }: any) => { state.json = payload })      
+        .addCase(existsId.fulfilled, (state: any, { payload }: any) => { state.json = payload })
+        .addCase(updateLawyer.fulfilled, (state: any, { payload }: any) => { state.json = payload })      
     }
 })
 
-// DB Lawyers 테이블의 바깥
 export const getAllLawyers = (state: any) => {
     console.log('-- Before useSelector --')
     console.log(JSON.stringify(state.lawyer.array))
     return state.lawyer.array;
+}
+export const getAuth = (state: any) => {
+    console.log(JSON.stringify(state.lawyer.auth))
+    return state.lawyer.auth
 }
 export const crawling = (state:any) => (state.lawyer.array)
 export const getOneLawyer = (state: any) => (state.lawyer.json)

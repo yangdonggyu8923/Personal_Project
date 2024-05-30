@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { countLawyerAPI, crawlingLawyersAPI, deleteLawyerByIdAPI, existsIdAPI, findAllLawyersAPI, findLawyerByIdAPI, loginLawyerAPI, logoutLawyerAPI, modifyLawyerAPI } from "./lawyer-api";
+import { countLawyerAPI, crawlingLawyersAPI, deleteLawyerByIdAPI, existsIdAPI, findAllLawyersAPI, findLawyerByIdAPI, loginLawyerAPI, logoutLawyerAPI, modifyLawyerAPI, updateLawyerAPI } from "./lawyer-api";
 import { ILawyers } from "../model/lawyers-model";
 
 export const findAllLawyers: any = createAsyncThunk(
@@ -77,4 +77,9 @@ export const existsId: any = createAsyncThunk(
 export const logoutLawyer: any = createAsyncThunk(
     'lawyers/logoutLawyer',
     async () => await logoutLawyerAPI()
+)
+
+export const updateLawyer: any = createAsyncThunk(
+    'lawyers/updateLawyer',
+    async (lawyer: ILawyers) => await updateLawyerAPI(lawyer)
 )
