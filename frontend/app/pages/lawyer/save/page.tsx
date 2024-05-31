@@ -10,6 +10,8 @@ import { MyTypography } from "@/app/components/common/style/cell";
 
 const JoinPage: NextPage = () =>  {
 
+  
+
   const [inputs, setInputs] = useState({
     username: "",
     password: "",
@@ -23,12 +25,22 @@ const JoinPage: NextPage = () =>  {
 
   const { username, password, name, phone, law, lawyerNo, office, address } = inputs;
   const handleChange = (e: any) => {
-    const { value, name } = e.target;
+    const { name, value } = e.target;
     setInputs({
         ...inputs,
         [name]: value
       })
   }
+
+  const options = [
+    { value: '형사법', label: '형사법' },
+    { value: '민사법', label: '민사법' },
+    { value: '가사법', label: '가사법' },
+    { value: '건설', label: '건설' },
+    { value: '재개발·재건축', label: '재개발·재건축' },
+    { value: '이혼', label: '이혼' },
+    { value: '도산', label: '도산' },
+];
 
   const router = useRouter();
 
@@ -76,22 +88,30 @@ const JoinPage: NextPage = () =>  {
 
       <div className="flex items-center mb-4">
       <label htmlFor="law" className="block text-gray-700 text-sm font-bold mr-2 flex-none" style={{width: '100px'}}><b>담당분야</b></label>
-      <input type="text" className="bg-gray-100 border border-gray-300 p-2 flex-grow" style={{flexBasis: 0, flexGrow: 1}}  placeholder="Enter Law" name="law" onChange={handleChange} value={law} required /><br />
+      {/* <input type="text" className="bg-gray-100 border border-gray-300 p-2 flex-grow" style={{flexBasis: 0, flexGrow: 1}}  placeholder="Enter Law" name="law" onChange={handleChange} value={law} required /><br /> */}
+      <select 
+    className="bg-gray-100 border border-gray-300 p-2 flex-grow" style={{ flexBasis: 0, flexGrow: 1 }} onChange={handleChange} value={law} name="law">
+    <option value="" >담당분야를 선택하세요</option>
+    {options.map((option) => (
+        <option  key={option.value} value={option.value}>{option.label}</option>
+        
+    ))}
+</select>
       </div>
 
       <div className="flex items-center mb-4">
       <label htmlFor="lawyerNo" className="block text-gray-700 text-sm font-bold mr-2 flex-none" style={{width: '100px'}}><b>자격번호</b></label>
-      <input type="text" className="bg-gray-100 border border-gray-300 p-2 flex-grow" style={{flexBasis: 0, flexGrow: 1}}  placeholder="Enter LawyerNo" name="lawyerNo" onChange={handleChange} value={lawyerNo} required /><br />
+      <input type="text" className="bg-gray-100 border border-gray-300 p-2 flex-grow" style={{flexBasis: 0, flexGrow: 1}}  placeholder="-를 제외한 8자리 자격번호" name="lawyerNo" onChange={handleChange} value={lawyerNo} required /><br />
       </div>
 
       <div className="flex items-center mb-4">
       <label htmlFor="office" className="block text-gray-700 text-sm font-bold mr-2 flex-none" style={{width: '100px'}}><b>사무소</b></label>
-      <input type="text" className="bg-gray-100 border border-gray-300 p-2 flex-grow" style={{flexBasis: 0, flexGrow: 1}}  placeholder="Enter office 없을 경우 공백" name="office" onChange={handleChange} value={office} /><br />
+      <input type="text" className="bg-gray-100 border border-gray-300 p-2 flex-grow" style={{flexBasis: 0, flexGrow: 1}}  placeholder="사무소 없을 경우 공백" name="office" onChange={handleChange} value={office} /><br />
       </div>
 
       <div className="flex items-center mb-4">
       <label htmlFor="address" className="block text-gray-700 text-sm font-bold mr-2 flex-none" style={{width: '100px'}}><b>주소</b></label>
-      <input type="text" className="bg-gray-100 border border-gray-300 p-2 flex-grow" style={{flexBasis: 0, flexGrow: 1}}  placeholder="Enter LawyerNo 없을 경우 공백" name="address" onChange={handleChange} value={address} /><br />
+      <input type="text" className="bg-gray-100 border border-gray-300 p-2 flex-grow" style={{flexBasis: 0, flexGrow: 1}}  placeholder="주소 없을 경우 공백" name="address" onChange={handleChange} value={address} /><br />
       </div>
      
     

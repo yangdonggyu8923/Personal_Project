@@ -94,12 +94,15 @@ export default function LawyerColumns(): GridColDef[] {
             sortable: false,
             field: 'delete',
             headerName: 'DELETE',
-            renderCell: ({ row }: CellType) =><button
+            renderCell: ({ row }: CellType) =>(
+            <div className="flex items-center justify-center">
+            <button 
                     onClick={() => {
                         console.log("delete lawyer id : {}", row.id)
                         dispatch(deleteLawyerById(row.id))
                         location.reload();
                     }}>DELETE</button>
+                    </div>)
         },
 
     ]

@@ -33,6 +33,7 @@ public class UserController {
         log.info("입력받은 User 정보 : { }"+service.findAll().toString());
         return ResponseEntity.ok(service.findAll());
     }
+
     @GetMapping("/detail")
     public ResponseEntity<UserDto> findById(@RequestParam("id") Long id) {
         log.info("입력받은 User 정보 : { }" + id);
@@ -66,4 +67,10 @@ public class UserController {
         log.info("입력받은 정보 : {}", param );
         return ResponseEntity.ok(service.update(param));
     }
+
+    //    @GetMapping("/list")
+//    public ResponseEntity<List<UserDto>> getUsersById() {
+//        log.info("입력받은 User 정보 : { }"+service.getUsersById().toString());
+//        return ResponseEntity.ok(service.getUsersById());
+//    }
 }

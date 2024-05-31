@@ -49,7 +49,7 @@ public class AuthServiceImpl implements AuthService {
 
         String token = Jwts.builder()
                 .claims()
-                .add("iss", "james.co.kr")
+                .add("iss", "lawmate.co.kr")
                 .add("sub", "user Auth")
                 .add("userId", user.getId())
                 .add("username", user.getUsername())
@@ -67,8 +67,8 @@ public class AuthServiceImpl implements AuthService {
 
         String token = Jwts.builder()
                 .claims()
-                .add("iss", "james.co.kr")
-                .add("sub", "user Auth")
+                .add("iss", "lawmate.co.kr")
+                .add("sub", "lawyer Lawyer")
                 .add("lawyerId", lawyerDto.getId())
                 .add("username", lawyerDto.getUsername())
                 .add("job", "admin") // 관리자(ad), 소비자

@@ -4,7 +4,7 @@ import { ILawyers } from "../model/lawyers-model"
 export const findAllLawyersAPI = async (page :number)=>{
     try {
         const response = await instance().get('/lawyers/list', {
-            params: { page, size: 5, limit: 5 }
+            params: { page, size: 10, limit: 10 }
         })
         return response.data
     } catch (error) {

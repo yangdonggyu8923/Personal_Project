@@ -26,7 +26,7 @@ public class LawyerServiceImpl implements LawyerService {
 
     @Override
     public List<LawyerDto> findAll() {
-        return repository.findAll().stream().map(i -> entityToDto(i)).toList();
+        return repository.findAllByOrderByIdDesc().stream().map(i -> entityToDto(i)).toList();
     }
 
     @Override
@@ -44,7 +44,6 @@ public class LawyerServiceImpl implements LawyerService {
                 }
 
                 String subject = row.select("td:nth-child(4) li").text();
-                String imgUrl = row.select("td:nth-child(2) img").attr("src");
                 String office = row.select("td:nth-child(6)").text();
                 String address = row.select("td:nth-child(7)").text();
                 subject = subject.replaceAll("\\(.*?\\)", "");
@@ -59,18 +58,9 @@ public class LawyerServiceImpl implements LawyerService {
                         .lawyerNo("임시자격번호")
                         .address(address)
                         .office(office)
-                        .imgUrl(imgUrl)
                         .build();
                 ls.add(lawyer);
                 }
-
-//                for(int i=0; i<98; i++){
-//                    Lawyer lawyer = Lawyer.builder()
-//                            .username("abc"+i)
-//                            .password("123"+i)
-//                            .build();
-//                    ls.add(lawyer);
-//                }
             }
         }
 
@@ -101,6 +91,8 @@ public class LawyerServiceImpl implements LawyerService {
         return repository.count();
     }
 
+
+
     @Override
     public Messenger save(LawyerDto lawyerDto) {
         repository.save(dtoToEntity(lawyerDto));
@@ -121,10 +113,12 @@ public class LawyerServiceImpl implements LawyerService {
             lawyer.setName(lawyerDto.getName());
             lawyer.setLawyerNo(lawyerDto.getLawyerNo());
         }
-
         lawyer.setPassword(lawyerDto.getPassword());
         lawyer.setPhone(lawyerDto.getPhone());
         lawyer.setLaw(lawyerDto.getLaw());
+        lawyer.setAddress(lawyerDto.getAddress());
+        lawyer.setOffice(lawyerDto.getOffice());
+
         repository.save(lawyer);
 
         return repository.findById(lawyerDto.getId()).get().equals(lawyer) ?
@@ -141,7 +135,6 @@ public class LawyerServiceImpl implements LawyerService {
         boolean flag = lawyer.getPassword().equals(lawyerDto.getPassword());
         repository.modifyTokenById(lawyer.getId(), accessToken);
 
-        // 토큰을 각 섹션(Header, Payload, Signature)으로 분할
         jwtProvider.printPayload(accessToken);
 
         return Messenger.builder()
@@ -165,4 +158,11 @@ public class LawyerServiceImpl implements LawyerService {
         repository.modifyTokenById(id, deleteToken);
         return repository.findById(id).get().getToken().equals("");
     }
+
+//    @Override
+//    public List<LawyerDto> getLawyersById() {
+//        return repository.getLawyersById()
+//                .stream().map(i->entityToDto(i))
+//                .toList();
+//    }
 }

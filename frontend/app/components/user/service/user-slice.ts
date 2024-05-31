@@ -72,4 +72,4 @@ export const existsUser = (state: any) => {
 
 export const { handlePassword, handleJob, handlePhone } = userSlice.actions
 
-export default userSlice.reducer; // 위는 각각의 reducers 여기선 다 합쳐져서 s가 사라진다.
+export default userSlice.reducer;

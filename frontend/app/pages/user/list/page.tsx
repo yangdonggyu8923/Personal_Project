@@ -34,11 +34,22 @@ const UsersPage: NextPage = () => {
       {allUsers && <DataGrid
         rows={allUsers}
         columns={UserColumns()}
-        pageSizeOptions={[5, 10, 20]}
-        checkboxSelection
-      />}
+        initialState={{
+          pagination: {
+            paginationModel: {
+              pageSize: 10,
+            },
+          },
+        }
+      }
+      pageSizeOptions={[10, 20, 30]}/>}
     </div>
-    <div>회원수 : {cntUsers} 명 </div></>)
+    <div className="flex justify-between items-center mb-4">
+    <div className="ml-auto">
+    <div>회원수 : {cntUsers} 명 </div>
+    </div>
+    </div>
+    </>)
 }
 
 export default UsersPage

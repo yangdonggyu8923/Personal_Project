@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface LawyerService {
-
     Messenger save(LawyerDto lawyerDto);
     Messenger crawl() throws IOException;
     Messenger deleteById(Long id);
@@ -21,6 +20,9 @@ public interface LawyerService {
     Optional<LawyerDto> findById(Long id);
     List<LawyerDto> findAll();
     Boolean logout(String token);
+
+
+//    List<LawyerDto> getLawyersById();
     default Lawyer dtoToEntity(LawyerDto dto) {
         return Lawyer.builder()
                 .id(dto.getId())
@@ -32,7 +34,6 @@ public interface LawyerService {
                 .lawyerNo(dto.getLawyerNo())
                 .address(dto.getAddress())
                 .office(dto.getOffice())
-                .imgUrl(dto.getImgUrl())
                 .build();
     }
     default LawyerDto entityToDto(Lawyer lawyer){
@@ -46,7 +47,6 @@ public interface LawyerService {
                 .lawyerNo(lawyer.getLawyerNo())
                 .address(lawyer.getAddress())
                 .office(lawyer.getOffice())
-                .imgUrl(lawyer.getImgUrl())
                 .build();
     }
 

@@ -11,6 +11,7 @@ import { destroyCookie, parseCookies } from "nookies";
 import { getOneLawyer } from "@/app/components/lawyer/service/lawyer-slice";
 import { ILawyers } from "@/app/components/lawyer/model/lawyers-model";
 import { deleteLawyerById, findLawyerById, updateLawyer } from "@/app/components/lawyer/service/lawyer-service";
+import Select from "react-select/base";
 
 
 const UpdateLaywerPage:NextPage = () => {
@@ -19,6 +20,18 @@ const UpdateLaywerPage:NextPage = () => {
   const router = useRouter()
   const oneLawyer:ILawyers = useSelector(getOneLawyer)
   const token:string|null = parseCookies().accessToken;
+
+  const initialSelectedLaws = oneLawyer.law ? oneLawyer.law.split(',') : [];
+
+  const options = [
+    { value: '형사법', label: '형사법' },
+    { value: '민사법', label: '민사법' },
+    { value: '가사법', label: '가사법' },
+    { value: '건설', label: '건설' },
+    { value: '재개발·재건축', label: '재개발·재건축' },
+    { value: '이혼', label: '이혼' },
+    { value: '도산', label: '도산' },
+];
 
 
 const handleDeleteLawyer = () =>{
@@ -38,6 +51,8 @@ const handleDeleteLawyer = () =>{
     .then((res:any)=>{
       alert('수정 완료')
       console.log('서버에서 넘어온 메신저 : ' + res.payload.id)
+    //   router.push(`${PG.LAWYER}/list`)
+      location.reload()
     })
     .catch((err:any)=>{})  
   }
@@ -47,85 +62,107 @@ const handleDeleteLawyer = () =>{
     console.log('토큰을 디코드한 내용 : ')
               console.log(JSON.stringify(jwtDecode<any>(parseCookies().accessToken)))
               console.log('토큰을 디코드한 ID : ')
-              console.log(jwtDecode<any>(parseCookies().accessToken).id)
+              console.log(jwtDecode<any>(parseCookies().accessToken).lawyerId)
   }, [])
 
+  
 
   return(<>
 
 <form className="max-w-md mx-auto" onSubmit={handleSubmit(onSubmit)}>
-{/* <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">회원정보수정</label> */}
+    <div className="editor mx-auto w-10/12 flex flex-col text-gray-800 border border-gray-300 p-4 shadow-lg max-w-2xl">
+        {MyTypography('변호사페이지', "1.5rem")}
+        <input type="hidden" value={jwtDecode<any>(parseCookies().accessToken).id} readOnly />
 
-
-<div className="editor mx-auto w-10/12 flex flex-col text-gray-800 border border-gray-300 p-4 shadow-lg max-w-2xl">
-    {MyTypography('변호사페이지', "1.5rem")}
-    <input type="hidden" value={jwtDecode<any>(parseCookies().accessToken).id} readOnly />
-
-    <div className="flex items-center mb-4">
-        <label htmlFor="username" className="block text-gray-700 text-sm font-bold mr-2 flex-none" style={{width: '100px'}}>
-            아이디
-        </label>
-        <div className="bg-gray-100 border border-gray-300 p-2 flex-grow" style={{flexBasis: 0, flexGrow: 1}}>
-        {jwtDecode<any>(parseCookies().accessToken).username}
+        <div className="flex items-center mb-4">
+            <label htmlFor="username" className="block text-gray-700 text-sm font-bold mr-2 flex-none" style={{width: '100px'}}>
+                아이디
+            </label>
+            <input defaultValue={jwtDecode<any>(parseCookies().accessToken).username} className="bg-gray-300 border border-gray-300 p-2 flex-grow" style={{ flexBasis: 0, flexGrow: 1, cursor: 'default' }} type="text" name="username" readOnly/>
         </div>
-    </div>
-    
-    <div className="flex items-center mb-4">
-        <label htmlFor="name" className="block text-gray-700 text-sm font-bold mr-2 flex-none" style={{width: '100px'}}>
-            이름
-        </label>
-        <div className="bg-gray-100 border border-gray-300 p-2 flex-grow" style={{flexBasis: 0, flexGrow: 1}}>
-        {oneLawyer.name}
-        </div>
-    </div>
 
-    <div className="flex items-center mb-4">
-        <label htmlFor="password" className="block text-gray-700 text-sm font-bold mr-2 flex-none" style={{width: '100px'}}>
-            비밀번호
-        </label>
-        <input {...register('password', {required: true, maxLength:40})} 
-        className="bg-gray-100 border border-gray-300 p-2 flex-grow" style={{flexBasis: 0, flexGrow: 1}} placeholder={oneLawyer.password} type="text" name="password"/>
-    </div>
+        <div className="flex items-center mb-4">
+            <label htmlFor="name" className="block text-gray-700 text-sm font-bold mr-2 flex-none" style={{width: '100px'}}>
+                이름
+            </label>
+            <input defaultValue={oneLawyer.name} className="bg-gray-300 border border-gray-300 p-2 flex-grow" style={{ flexBasis: 0, flexGrow: 1, cursor: 'default' }} type="text" name="name" readOnly/>
+        </div>
+
+        <div className="flex items-center mb-4">
+            <label htmlFor="password" className="block text-gray-700 text-sm font-bold mr-2 flex-none" style={{width: '100px'}}>
+                비밀번호
+            </label>
+            <input {...register('password', { required: true, maxLength: 40 })} 
+                className="bg-gray-100 border border-gray-300 p-2 flex-grow" style={{ flexBasis: 0, flexGrow: 1 }} placeholder={oneLawyer.password} defaultValue={oneLawyer.password} type="text" name="password"/>
+        </div>
+
     
     <div className="flex items-center mb-4">
         <label htmlFor="phone" className="block text-gray-700 text-sm font-bold mr-2 flex-none" style={{width: '100px'}}>
             전화번호
         </label>
         <input {...register('phone', {required: true, maxLength:40})} 
-        className="bg-gray-100 border border-gray-300 p-2 flex-grow" style={{flexBasis: 0, flexGrow: 1}} placeholder={oneLawyer.phone} type="text" name="phone"/>
+        className="bg-gray-100 border border-gray-300 p-2 flex-grow" style={{flexBasis: 0, flexGrow: 1}} placeholder={oneLawyer.phone} defaultValue={oneLawyer.phone} type="text" name="phone"/>
     </div>
+
+
+    {/* <div className="flex items-center mb-4">
+                    <label htmlFor="law" className="block text-gray-700 text-sm font-bold mr-2 flex-none" style={{width: '100px'}}>
+                        담당분야1
+                    </label>
+                    <div className="flex-grow" style={{ flexBasis: 0, flexGrow: 1 }}>
+                        {options.map((option) => (
+                            <div key={option.value} className="flex items-center mb-2">
+                                <input 
+                                    type="checkbox" 
+                                    value={option.value} 
+                                    {...register('law', { required: true })}
+                                    defaultChecked={initialSelectedLaws.includes(option.value)}
+                                    className="mr-2"
+                                />
+                                <label htmlFor="law" className="text-gray-700 text-sm">{option.label}</label>
+                            </div>
+                        ))}
+                    </div>
+                </div> */}
 
     <div className="flex items-center mb-4">
         <label htmlFor="law" className="block text-gray-700 text-sm font-bold mr-2 flex-none" style={{width: '100px'}}>
             담당분야
         </label>
-        <input {...register('law', {required: true, maxLength:40})} 
-        className="bg-gray-100 border border-gray-300 p-2 flex-grow" style={{flexBasis: 0, flexGrow: 1}} placeholder={oneLawyer.law} type="text" name="law"/>
+        <select {...register('law', { required: true })} 
+    className="bg-gray-100 border border-gray-300 p-2 flex-grow" style={{ flexBasis: 0, flexGrow: 1 }}>
+    <option value="" >담당분야를 선택하세요</option>
+    {options.map((option) => (
+        <option key={option.value} value={option.value}>{option.label}</option>
+    ))}
+</select>
+        {/* <input {...register('law', {required: true, maxLength:40})} 
+        className="bg-gray-100 border border-gray-300 p-2 flex-grow" style={{flexBasis: 0, flexGrow: 1}} placeholder={oneLawyer.law} defaultValue={oneLawyer.law} type="text" name="law"/> */}
+    
     </div>
 
     <div className="flex items-center mb-4">
-        <label htmlFor="lawyerNo" className="block text-gray-700 text-sm font-bold mr-2 flex-none" style={{width: '100px'}}>
-            자격번호
-        </label>
-        <div className="bg-gray-100 border border-gray-300 p-2 flex-grow" style={{flexBasis: 0, flexGrow: 1}}>
-        {oneLawyer.lawyerNo}
-        </div>
+    <label htmlFor="lawyerNo" className="block text-gray-700 text-sm font-bold mr-2 flex-none" style={{ width: '100px' }}>
+        자격번호
+    </label>
+    <input defaultValue={oneLawyer.lawyerNo} className="bg-gray-300 border border-gray-300 p-2 flex-grow" style={{ flexBasis: 0, flexGrow: 1, cursor: 'default' }} type="text" name="lawyerNo" readOnly/>
     </div>
 
     <div className="flex items-center mb-4">
         <label htmlFor="office" className="block text-gray-700 text-sm font-bold mr-2 flex-none" style={{width: '100px'}}>
             사무소
         </label>
-        <input {...register('office', {required: true, maxLength:40})} 
-        className="bg-gray-100 border border-gray-300 p-2 flex-grow" style={{flexBasis: 0, flexGrow: 1}} placeholder={oneLawyer.office} type="text" name="office"/>
+        <input {...register('office', {required: false, maxLength:40})} 
+        className="bg-gray-100 border border-gray-300 p-2 flex-grow" style={{flexBasis: 0, flexGrow: 1}} placeholder={oneLawyer.office} defaultValue={oneLawyer.office} type="text" name="office"/>
     </div>
 
     <div className="flex items-center mb-4">
         <label htmlFor="address" className="block text-gray-700 text-sm font-bold mr-2 flex-none" style={{width: '100px'}}>
             주소
         </label>
-        <input {...register('address', {required: true, maxLength:40})} 
-        className="bg-gray-100 border border-gray-300 p-2 flex-grow" style={{flexBasis: 0, flexGrow: 1}} placeholder={oneLawyer.address} type="text" name="address"/>
+        <input {...register('address', {required: false, maxLength:40})} 
+        className="bg-gray-100 border border-gray-300 p-2 flex-grow" style={{flexBasis: 0, flexGrow: 1}} placeholder={oneLawyer.address} defaultValue={oneLawyer.address} type="text" name="address"/>
     </div>
 
     

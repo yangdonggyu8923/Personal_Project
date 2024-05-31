@@ -14,7 +14,7 @@ import lombok.*;
 public class Lawyer {
 
     @Id
-    @Column(name = "lawyer_id", nullable = false)
+    @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String username;
@@ -25,7 +25,6 @@ public class Lawyer {
     private String lawyerNo;
     private String token;
 
-    private String imgUrl;
     private String office;
     private String address;
 

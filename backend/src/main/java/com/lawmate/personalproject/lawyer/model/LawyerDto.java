@@ -1,18 +1,16 @@
 package com.lawmate.personalproject.lawyer.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.querydsl.core.annotations.QueryProjection;
+import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-@Component
 @Data
+@Component
+@ToString
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-@Slf4j
+@NoArgsConstructor
 public class LawyerDto {
     private Long id;
     private String username;
@@ -23,8 +21,20 @@ public class LawyerDto {
     private String lawyerNo;
     private String token;
 
-    private String imgUrl;
-    private String birth;
     private String office;
     private String address;
+
+//    @QueryProjection
+//    public LawyerDto(Long id, String username, String password, String name, String phone, String law, String lawyerNo, String token, String office, String address) {
+//        this.id = id;
+//        this.username = username;
+//        this.password = password;
+//        this.name = name;
+//        this.phone = phone;
+//        this.law = law;
+//        this.lawyerNo = lawyerNo;
+//        this.token = token;
+//        this.office = office;
+//        this.address = address;
+//    }
 }

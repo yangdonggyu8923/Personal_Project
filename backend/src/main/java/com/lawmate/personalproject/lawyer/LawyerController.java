@@ -34,6 +34,7 @@ public class LawyerController {
         log.info("입력받은 Lawyer 정보 : { }" + service.findAll().toString());
         return ResponseEntity.ok(service.findAll());
     }
+
     @GetMapping("/crawl")
     public ResponseEntity<Messenger> crawl() throws IOException {
         log.info("크롤링 실행");
@@ -73,4 +74,10 @@ public class LawyerController {
         var flag = service.logout(accessToken); // 토큰이 있으면 false, 없으면 true
         return ResponseEntity.ok(flag);
     }
+
+//    @GetMapping("/list")
+//    public ResponseEntity<List<LawyerDto>> getLawyersById() {
+//        log.info("입력받은 Lawyer 정보 : { }" + service.getLawyersById().toString());
+//        return ResponseEntity.ok(service.getLawyersById());
+//    }
 }

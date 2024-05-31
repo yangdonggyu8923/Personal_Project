@@ -14,8 +14,21 @@ import java.util.Optional;
 
 @Repository
 public interface LawyerRepository extends JpaRepository<Lawyer, Long> {
-    @Query("select a from lawyers a where a.id=:id order by a.id desc")
-    List<Lawyer> getLawyersById(@Param("id") Long id);
+
+    List<Lawyer> findAllByOrderByIdDesc();
+
+    Optional<Lawyer> findByUsername(String username);
+
+    @Modifying
+    @Query("update lawyers set token=:token where id = :id")
+    void modifyTokenById(@Param("id") Long id, @Param("token") String token);
+
+    Boolean existsByUsername(String username);
+    Boolean existsByName(String name);
+
+
+    @Query("SELECT a FROM lawyers a ORDER BY a.id DESC")
+    List<Lawyer> getLawyersById();
     @Query("select a from lawyers a order by a.name asc")
     List<Lawyer> getLawyersByNameAsc();
     @Query("select a from lawyers a where a.law like '%형사법%'")
@@ -35,14 +48,4 @@ public interface LawyerRepository extends JpaRepository<Lawyer, Long> {
 
     @Query("select a from lawyers a where a.law like '%가사법%'")
     List<Lawyer> getLawyersByLaw가사법();
-
-    Boolean existsByName(String name);
-
-    Optional<Lawyer> findByUsername(String username);
-
-    @Modifying
-    @Query("update lawyers set token=:token where id = :id")
-    void modifyTokenById(@Param("id") Long id, @Param("token") String token);
-
-    Boolean existsByUsername(String username);
 }

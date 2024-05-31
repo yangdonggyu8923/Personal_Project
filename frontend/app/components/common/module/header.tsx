@@ -110,7 +110,8 @@ function Header() {
         console.log('로그아웃 적용 후 : ' + parseCookies().accessToken)
         setShowLawyerProfile(false)
         token="";
-        location.replace('/')
+        router.push('/')
+        // location.replace('/')
       })
       .catch((err:any) => {
         console.log('로그아웃 실행에서 에러가 발생함 : ' + err)
@@ -125,7 +126,8 @@ function Header() {
         console.log('로그아웃 적용 후 : ' + parseCookies().accessToken)
         setShowProfile(false)
         token="";
-        location.replace('/')
+        router.push('/')
+        // location.replace('/')
       })
       .catch((err: any) => {
         console.log('로그아웃 실행에서 에러가 발생함 : ' + err)

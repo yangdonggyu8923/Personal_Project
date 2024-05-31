@@ -29,15 +29,27 @@ const LawyerPage: NextPage = () => {
 
     return(<>
     <div style={{ height: '100%', width: "100%" }}>
-      {allLawyer && <DataGrid
-        rows={allLawyer}
-        columns={LawyerColumns()}
-        pageSizeOptions={[5]}
-        checkboxSelection
-      />}
+      {
+      allLawyer && <DataGrid
+      rows={allLawyer}
+      columns={LawyerColumns()}
+        initialState={{
+          pagination: {
+            paginationModel: {
+              pageSize: 10,
+            },
+          },
+        }
+      }
+      pageSizeOptions={[10, 20, 30]}/>
+      }
+    <div className="flex justify-between items-center mb-4">
+    <div className="ml-auto">
+        <button className="btn bg-blue-500 text-white py-2 px-4 rounded-xl font-bold uppercase hover:bg-blue-600 transition-colors duration-300" onClick={handleCrawlClick}>크롤링</button>
     </div>
-    <button onClick={handleCrawlClick}>크롤링</button>
-    <div>변호사 회원 수 : {cntLawyer} 명 </div>
+    <div className="ml-2">변호사 회원 수: {cntLawyer} 명 </div>
+    </div>
+    </div>
     </>)
 }
 

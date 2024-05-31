@@ -38,6 +38,7 @@ const handleDeleteUser = () =>{
     .then((res:any)=>{
       alert('수정 완료')
       console.log('서버에서 넘어온 메신저 : ' + res.payload.id)
+      // router.push(`${PG.USER}/list`)
       location.reload()
     })
     .catch((err:any)=>{})  

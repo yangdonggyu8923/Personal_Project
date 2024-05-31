@@ -64,8 +64,6 @@ public class UserServiceImpl implements UserService{
         String accessToken = jwtProvider.createToken(entityToDto(user));
         boolean flag = user.getPassword().equals(userDto.getPassword());
         repository.modifyTokenById(user.getId(), accessToken);
-
-        // 토큰을 각 섹션(Header, Payload, Signature)으로 분할
         jwtProvider.printPayload(accessToken);
 
         return Messenger.builder()
@@ -76,7 +74,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public List<UserDto> findAll() {
-        return repository.findAll().stream().map(i->entityToDto(i)).toList();
+        return repository.findAllByOrderByIdDesc().stream().map(i->entityToDto(i)).toList();
     }
 
     @Override
@@ -127,5 +125,12 @@ public class UserServiceImpl implements UserService{
                 Messenger.builder().message("SUCCESS").build() :
                 Messenger.builder().message("FAILURE").build();
     }
+
+//    @Override
+//    public List<UserDto> getUsersById() {
+//        return repository.getUsersById()
+//                .stream().map(i->entityToDto(i))
+//                .toList();
+//    }
 }
 

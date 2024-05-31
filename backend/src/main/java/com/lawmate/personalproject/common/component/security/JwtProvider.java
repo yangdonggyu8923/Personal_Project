@@ -37,7 +37,7 @@ public class JwtProvider {
                 .issuer(issuer)
                 .signWith(secretKey)
                 .expiration(Date.from(expiredDate))
-                .claim("sub", "james")
+                .claim("sub", "lawmate")
                 .claim("username", dto.getUsername())
                 .claim("userId", dto.getId())
                 .compact();
@@ -53,7 +53,7 @@ public class JwtProvider {
                 .issuer(issuer)
                 .signWith(secretKey)
                 .expiration(Date.from(expiredDate))
-                .claim("sub", "james")
+                .claim("sub", "lawmate")
                 .claim("username", dto.getUsername())
                 .claim("lawyerId", dto.getId())
                 .compact();
