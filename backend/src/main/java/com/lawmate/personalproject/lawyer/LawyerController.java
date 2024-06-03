@@ -1,11 +1,12 @@
 package com.lawmate.personalproject.lawyer;
 import com.lawmate.personalproject.common.component.Messenger;
-import com.lawmate.personalproject.lawyer.model.LawyerDto;
+import com.lawmate.personalproject.lawyer.domain.LawyerDto;
 import com.lawmate.personalproject.lawyer.service.LawyerServiceImpl;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +24,11 @@ import java.util.List;
 public class LawyerController {
 
     private final LawyerServiceImpl service;
+
+    @GetMapping("/")
+    public ResponseEntity apiLawyer(){
+        return new ResponseEntity("변호사 api 입니다.", HttpStatus.OK);
+    }
 
     @PostMapping(path = "/save")
     public ResponseEntity<Messenger> save(@RequestBody LawyerDto lawyerDto) {

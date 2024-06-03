@@ -1,13 +1,16 @@
 package com.lawmate.personalproject.user;
 
 import com.lawmate.personalproject.common.component.Messenger;
-import com.lawmate.personalproject.user.model.UserDto;
+import com.lawmate.personalproject.user.domain.UserDto;
 import com.lawmate.personalproject.user.service.UserServiceImpl;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,6 +25,24 @@ import java.util.List;
 @Slf4j
 public class UserController {
     private final UserServiceImpl service;
+
+    // -------- 시큐리티 -----------
+
+    @GetMapping("/")
+    public ResponseEntity apiUser(){
+        return new ResponseEntity("유저 api 입니다.", HttpStatus.OK);
+    }
+
+    @GetMapping("/info")
+    public ResponseEntity userInfo(@AuthenticationPrincipal UserDetails userDetails){
+
+        return new ResponseEntity(userDetails.getUsername(), HttpStatus.OK);
+    }
+
+
+
+
+    // ----------------------------
 
     @PostMapping(path = "/save")
     public ResponseEntity<Messenger> save(@RequestBody UserDto param) {

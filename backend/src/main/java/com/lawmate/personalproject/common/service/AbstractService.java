@@ -1,7 +1,7 @@
 package com.lawmate.personalproject.common.service;
 
 import com.lawmate.personalproject.common.component.Messenger;
-import com.lawmate.personalproject.user.model.User;
+import com.lawmate.personalproject.user.domain.UserModel;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -22,7 +22,7 @@ public abstract class AbstractService <T> {
     public  abstract  Boolean existsById(long id);
 
 
-    public abstract Messenger insertMenuData(User user) throws SQLException;
+    public abstract Messenger insertMenuData(UserModel user) throws SQLException;
     public  abstract  String delete(T t);
     public abstract Messenger save (T t);
 }

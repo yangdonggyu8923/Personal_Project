@@ -1,7 +1,6 @@
 package com.lawmate.personalproject.user.repository;
 
-import com.lawmate.personalproject.lawyer.model.Lawyer;
-import com.lawmate.personalproject.user.model.User;
+import com.lawmate.personalproject.user.domain.UserModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -12,15 +11,16 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-    List<User> findAllByOrderByIdDesc();
-    Optional<User> findByUsername(String username);
-    Optional<User> findByName(String name);
+public interface UserRepository extends JpaRepository<UserModel, Long> {
+    List<UserModel> findAllByOrderByUserIdDesc();
+    Optional<UserModel> findByUsername(String username);
+    Optional<UserModel> findByName(String name);
     Boolean existsByUsername(String username);
-    @Modifying
-    @Query("update users set token=:token where id = :id")
-    void modifyTokenById(@Param("id") Long id, @Param("token") String token);
 
-    @Query("SELECT a FROM users a ORDER BY a.id DESC")
-    List<User> getUsersById();
+//    @Modifying
+//    @Query("update users set token=:token where userId = :id")
+//    void modifyTokenById(@Param("id") Long id, @Param("token") String token);
+
+    @Query("SELECT a FROM users a ORDER BY a.userId DESC")
+    List<UserModel> getUsersById();
 }

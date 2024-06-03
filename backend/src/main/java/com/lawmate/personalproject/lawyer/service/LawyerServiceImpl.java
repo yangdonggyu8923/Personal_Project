@@ -2,8 +2,8 @@ package com.lawmate.personalproject.lawyer.service;
 
 import com.lawmate.personalproject.common.component.security.JwtProvider;
 import com.lawmate.personalproject.common.component.Messenger;
-import com.lawmate.personalproject.lawyer.model.Lawyer;
-import com.lawmate.personalproject.lawyer.model.LawyerDto;
+import com.lawmate.personalproject.lawyer.domain.LawyerModel;
+import com.lawmate.personalproject.lawyer.domain.LawyerDto;
 import com.lawmate.personalproject.lawyer.repository.LawyerRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,7 +31,7 @@ public class LawyerServiceImpl implements LawyerService {
 
     @Override
     public Messenger crawl() throws IOException {
-        List<Lawyer> ls = new ArrayList<>();
+        List<LawyerModel> ls = new ArrayList<>();
         System.out.println("크롤링 실행");
         for (int page = 1; page <= 2; page++) {
             Document doc = Jsoup.connect("https://www.koreanbar.or.kr/pages/search/search1.asp?sido1=&gun1=&dong1=&special1_1=&special1=1&searchtype=mname&searchstr=&page=" + page).timeout(10 * 1000).get();
@@ -49,7 +49,7 @@ public class LawyerServiceImpl implements LawyerService {
                 subject = subject.replaceAll("\\(.*?\\)", "");
 
                 if (!name.isEmpty()) {
-                Lawyer lawyer = Lawyer.builder()
+                LawyerModel lawyer = LawyerModel.builder()
                         .username("임시아이디")
                         .password("임시비밀번호")
                         .name(name)
@@ -107,7 +107,7 @@ public class LawyerServiceImpl implements LawyerService {
     @Transactional
     @Override
     public Messenger update(LawyerDto lawyerDto) {
-        Lawyer lawyer = repository.findById(lawyerDto.getId()).get();
+        LawyerModel lawyer = repository.findById(lawyerDto.getId()).get();
         if (lawyerDto.getUsername() != null && !lawyerDto.getUsername().equals("")) {
             lawyer.setUsername(lawyerDto.getUsername());
             lawyer.setName(lawyerDto.getName());
@@ -130,7 +130,7 @@ public class LawyerServiceImpl implements LawyerService {
     @Override
     public Messenger login(LawyerDto lawyerDto) {
         log.info("로그인 서비스로 들어온 파라미터 : " + lawyerDto);
-        Lawyer lawyer = repository.findByUsername(lawyerDto.getUsername()).get();
+        LawyerModel lawyer = repository.findByUsername(lawyerDto.getUsername()).get();
         String accessToken = jwtProvider.createLawyerToken(entityToDto(lawyer));
         boolean flag = lawyer.getPassword().equals(lawyerDto.getPassword());
         repository.modifyTokenById(lawyer.getId(), accessToken);

@@ -1,8 +1,8 @@
-package com.lawmate.personalproject.common.security.model.service;
+package com.lawmate.personalproject.common.security.service;
 import com.lawmate.personalproject.common.component.Messenger;
-import com.lawmate.personalproject.lawyer.model.LawyerDto;
+import com.lawmate.personalproject.lawyer.domain.LawyerDto;
 import com.lawmate.personalproject.lawyer.repository.LawyerRepository;
-import com.lawmate.personalproject.user.model.UserDto;
+import com.lawmate.personalproject.user.domain.UserDto;
 import com.lawmate.personalproject.user.repository.UserRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -51,7 +51,7 @@ public class AuthServiceImpl implements AuthService {
                 .claims()
                 .add("iss", "lawmate.co.kr")
                 .add("sub", "user Auth")
-                .add("userId", user.getId())
+                .add("userId", user.getUserId())
                 .add("username", user.getUsername())
                 .add("job", "admin") // 관리자(ad), 소비자
                 .and()

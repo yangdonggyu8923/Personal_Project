@@ -3,15 +3,14 @@ package com.lawmate.personalproject.user.service;
 import com.lawmate.personalproject.common.component.Messenger;
 import com.lawmate.personalproject.common.service.CommandService;
 import com.lawmate.personalproject.common.service.QueryService;
-import com.lawmate.personalproject.user.model.User;
-import com.lawmate.personalproject.user.model.UserDto;
+import com.lawmate.personalproject.user.domain.UserModel;
+import com.lawmate.personalproject.user.domain.UserDto;
 
-import java.util.List;
 import java.util.Optional;
 
 public interface UserService extends CommandService<UserDto>, QueryService<UserDto> {
-    Optional<User> findUserByUsername(String username);
-    Optional<User> findUserByName(String name);
+    Optional<UserModel> findUserByUsername(String username);
+    Optional<UserModel> findUserByName(String name);
     Messenger modify(UserDto dto);
     Messenger login(UserDto param);
     Boolean logout(String accessToken);
@@ -20,22 +19,22 @@ public interface UserService extends CommandService<UserDto>, QueryService<UserD
 
 //    List<UserDto> getUsersById();
 
-    default User dtoToEntity(UserDto dto) {
-        return User.builder()
-                .id(dto.getId())
+    default UserModel dtoToEntity(UserDto dto) {
+        return UserModel.builder()
+                .userId(dto.getUserId())
                 .username(dto.getUsername())
                 .password(dto.getPassword())
                 .name(dto.getName())
-                .phone(dto.getPhone())
+//                .phone(dto.getPhone())
                 .build();
     }
-    default UserDto entityToDto(User user){
+    default UserDto entityToDto(UserModel user){
         return UserDto.builder()
-                .id(user.getId())
+                .userId(user.getUserId())
                 .username(user.getUsername())
                 .password(user.getPassword())
                 .name(user.getName())
-                .phone(user.getPhone())
+//                .phone(user.getPhone())
                 .build();
     }
 

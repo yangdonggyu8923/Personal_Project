@@ -2,8 +2,8 @@ package com.lawmate.personalproject.user.service;
 
 import com.lawmate.personalproject.common.component.security.JwtProvider;
 import com.lawmate.personalproject.common.component.Messenger;
-import com.lawmate.personalproject.user.model.User;
-import com.lawmate.personalproject.user.model.UserDto;
+import com.lawmate.personalproject.user.domain.UserModel;
+import com.lawmate.personalproject.user.domain.UserDto;
 import com.lawmate.personalproject.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -37,12 +37,12 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public Optional<User> findUserByUsername(String username) {
+    public Optional<UserModel> findUserByUsername(String username) {
         return repository.findByUsername(username);
     }
 
     @Override
-    public Optional<User> findUserByName(String name) {
+    public Optional<UserModel> findUserByName(String name) {
         return repository.findByName(name);
     }
 
@@ -60,10 +60,10 @@ public class UserServiceImpl implements UserService{
     @Override
     public Messenger login(UserDto userDto) {
         log.info("로그인 서비스로 들어온 파라미터 : " + userDto);
-        User user = repository.findByUsername(userDto.getUsername()).get();
+        UserModel user = repository.findByUsername(userDto.getUsername()).get();
         String accessToken = jwtProvider.createToken(entityToDto(user));
         boolean flag = user.getPassword().equals(userDto.getPassword());
-        repository.modifyTokenById(user.getId(), accessToken);
+//        repository.modifyTokenById(user.getUserId(), accessToken);
         jwtProvider.printPayload(accessToken);
 
         return Messenger.builder()
@@ -74,7 +74,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public List<UserDto> findAll() {
-        return repository.findAllByOrderByIdDesc().stream().map(i->entityToDto(i)).toList();
+        return repository.findAllByOrderByUserIdDesc().stream().map(i->entityToDto(i)).toList();
     }
 
     @Override
@@ -95,12 +95,13 @@ public class UserServiceImpl implements UserService{
     @Transactional
     @Override
     public Boolean logout(String token) {
-        String accessToken = token != null && token.startsWith("Bearer ") ?
-                token.substring(7) : "undefined";
-        Long id = jwtProvider.getPayload(accessToken).get("userId", Long.class);
-        String deleteToken = "";
-        repository.modifyTokenById(id,deleteToken);
-        return repository.findById(id).get().getToken().equals("");
+//        String accessToken = token != null && token.startsWith("Bearer ") ?
+//                token.substring(7) : "undefined";
+//        Long id = jwtProvider.getPayload(accessToken).get("userId", Long.class);
+//        String deleteToken = "";
+//        repository.modifyTokenById(id,deleteToken);
+//        return repository.findById(id).get().getToken().equals("");
+        return null;
     }
 
     @Override
@@ -111,17 +112,17 @@ public class UserServiceImpl implements UserService{
     @Transactional
     @Override
     public Messenger update(UserDto userDto) {
-     User user = repository.findById(userDto.getId()).get();
+     UserModel user = repository.findById(userDto.getUserId()).get();
         if (userDto.getUsername() != null && !userDto.getUsername().equals("")) {
             user.setUsername(userDto.getUsername());
             user.setName(userDto.getName());
         }
 
         user.setPassword(userDto.getPassword());
-        user.setPhone(userDto.getPhone());
+//        user.setPhone(userDto.getPhone());
         repository.save(user);
 
-        return repository.findById(userDto.getId()).get().equals(user) ?
+        return repository.findById(userDto.getUserId()).get().equals(user) ?
                 Messenger.builder().message("SUCCESS").build() :
                 Messenger.builder().message("FAILURE").build();
     }

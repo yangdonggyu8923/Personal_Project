@@ -1,4 +1,4 @@
-package com.lawmate.personalproject.user.model;
+package com.lawmate.personalproject.admin.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,11 +13,8 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 @AllArgsConstructor
 @Slf4j
-public class UserDto {
+public class AdminDto {
     private Long id;
     private String username;
     private String password;
-    private String name;
-    private String phone;
-    private String token;
 }

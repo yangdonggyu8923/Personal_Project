@@ -1,10 +1,9 @@
-package com.lawmate.personalproject.user.model;
-
+package com.lawmate.personalproject.admin.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
 
-@Entity(name = "users")
+@Entity(name = "admins")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Setter
@@ -12,18 +11,11 @@ import lombok.*;
 @AllArgsConstructor
 @ToString(exclude = {"id"})
 
-public class User {
-
+public class AdminModel {
     @Id
-    @Column(name = "user_id", nullable = false)
+    @Column(name = "admin_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String username;
     private String password;
-    private String name;
-    private String phone;
-    private String token;
-
-
-
 }

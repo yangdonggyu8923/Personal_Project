@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +20,11 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 public class AdminController {
     private final AdminServiceImpl service;
+
+    @GetMapping("/")
+    public ResponseEntity apiAdmin(){
+        return new ResponseEntity("어드민 api 입니다.", HttpStatus.OK);
+    }
 
 
     @DeleteMapping("/delete-user")

@@ -1,8 +1,6 @@
-package com.lawmate.personalproject.lawyer.model;
+package com.lawmate.personalproject.lawyer.domain;
 
-import com.querydsl.core.annotations.QueryProjection;
 import lombok.*;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 @Data
