@@ -1,13 +1,16 @@
 package com.lawmate.personalproject.user.domain;
 
 
-import com.lawmate.personalproject.common.enums.Role;
-import com.lawmate.personalproject.order.domain.OrderModel;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Entity(name = "users")
@@ -18,11 +21,11 @@ import java.util.List;
 @AllArgsConstructor
 @ToString(exclude = {"id"})
 
-public class UserModel {
+public class UserModel implements Serializable, UserDetails {
     @Id
     @Column(name = "user_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long userId;
+    private Long userId;
     @Column(name = "username", unique = true, nullable = false)
     private String username;
     @Column(name = "password", nullable = false)
@@ -34,11 +37,35 @@ public class UserModel {
     private String email;
     @Column(name = "reg_date")
     private String regDate;
-    @OneToMany(mappedBy = "user")
-    private List<OrderModel> orders = new ArrayList<>();
-    @ElementCollection(fetch = FetchType.EAGER)
-    public List<Role> roles;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    public List<RoleModel> roles;
 
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        this.roles.forEach(role -> authorities.add(new SimpleGrantedAuthority(role.getRoleName())));
+        return authorities;
+    }
 
+    @Override
+    public boolean isAccountNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return false;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return false;
+    }
 }

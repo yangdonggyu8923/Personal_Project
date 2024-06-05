@@ -1,6 +1,6 @@
 package com.lawmate.personalproject.user.service;
 
-import com.lawmate.personalproject.common.component.security.JwtProvider;
+//import com.lawmate.personalproject.common.component.security.JwtProvider;
 import com.lawmate.personalproject.common.component.Messenger;
 import com.lawmate.personalproject.user.domain.UserModel;
 import com.lawmate.personalproject.user.domain.UserDto;
@@ -19,7 +19,7 @@ import java.util.Optional;
 @Slf4j
 public class UserServiceImpl implements UserService{
     private final UserRepository repository;
-    private final JwtProvider jwtProvider;
+//    private final JwtProvider jwtProvider;
 
 
     @Override
@@ -61,14 +61,14 @@ public class UserServiceImpl implements UserService{
     public Messenger login(UserDto userDto) {
         log.info("로그인 서비스로 들어온 파라미터 : " + userDto);
         UserModel user = repository.findByUsername(userDto.getUsername()).get();
-        String accessToken = jwtProvider.createToken(entityToDto(user));
+//        String accessToken = jwtProvider.createToken(entityToDto(user));
         boolean flag = user.getPassword().equals(userDto.getPassword());
 //        repository.modifyTokenById(user.getUserId(), accessToken);
-        jwtProvider.printPayload(accessToken);
+//        jwtProvider.printPayload(accessToken);
 
         return Messenger.builder()
                 .message(flag ? "SUCCESS" : "FAILURE")
-                .accessToken(flag ? accessToken : "NONE")
+//                .accessToken(flag ? accessToken : "NONE")
                 .build();
     }
 

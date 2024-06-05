@@ -1,4 +1,5 @@
-# drop table IF EXISTS users;
+show databases;
+--  drop table IF EXISTS users;
 
 -- insert into users (user_id, username, password, name, phone) values (1, 'dmcclure0', 'pO2(eO73)%@', 'Devondra McClure', '134-221-0694');
 -- insert into users (user_id, username, password, name, phone) values (2, 'cmasterson1', 'bE0''*PeV|k=H=', 'Cesar Masterson', '125-693-1152');
@@ -8,6 +9,5 @@
 -- insert into users (user_id, username, password, name, phone) values (6, 'bchoat5', 'xH0!g8Pm)ms8s', 'Bobbie Choat', '473-356-3937');
 -- insert into users (user_id, username, password, name, phone) values (7, 'bdymocke6', 'lL2@o8>h''v>{uN6E', 'Binni Dymocke', '262-590-2784');
 
-insert into admins (admin_id, username, password) values (1, 'admin', '1234')
 
 
