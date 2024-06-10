@@ -1,16 +1,10 @@
 package com.lawmate.personalproject.lawyer.repository;
 import com.lawmate.personalproject.lawyer.domain.LawyerModel;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-import java.util.Optional;
-
 @Repository
-public interface LawyerRepository extends JpaRepository<LawyerModel, Long> {
+public interface LawyerRepository extends JpaRepository<LawyerModel, Long>, LawyerDao {
 
 //    List<LawyerModel> findAllByOrderByIdDesc();
 //

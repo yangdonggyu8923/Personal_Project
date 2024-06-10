@@ -24,7 +24,6 @@ public class LawyerModel {
     private String law;
     private String lawyerNo;
     private String token;
-
     private String office;
     private String address;
 

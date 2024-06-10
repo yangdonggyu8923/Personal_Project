@@ -25,8 +25,7 @@ public class LawyerServiceImpl implements LawyerService {
 
     @Override
     public List<LawyerDto> findAll() {
-//        return repository.findAllByOrderByIdDesc().stream().map(i -> entityToDto(i)).toList();
-        return null;
+        return repository.getAllLawyers();
     }
 
     @Override

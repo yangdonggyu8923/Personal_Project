@@ -1,6 +1,5 @@
 package com.lawmate.personalproject.common.security.service;
 
-import com.lawmate.personalproject.lawyer.domain.LawyerModel;
 import com.lawmate.personalproject.lawyer.repository.LawyerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;

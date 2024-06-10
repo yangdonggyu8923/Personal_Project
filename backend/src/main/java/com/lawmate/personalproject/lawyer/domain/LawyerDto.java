@@ -1,6 +1,7 @@
 package com.lawmate.personalproject.lawyer.domain;
 
 import com.querydsl.core.annotations.QueryProjection;
+import jakarta.persistence.Column;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +19,6 @@ public class LawyerDto {
     private String law;
     private String lawyerNo;
     private String token;
-
     private String office;
     private String address;
 
