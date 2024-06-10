@@ -1,4 +1,4 @@
-package com.lawmate.personalproject.user.domain;
+package com.lawmate.personalproject.lawyer.domain;
 
 public enum RoleName {
     SUPERADMIN , ADMIN , USER;

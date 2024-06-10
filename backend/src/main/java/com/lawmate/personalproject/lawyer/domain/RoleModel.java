@@ -1,8 +1,9 @@
-package com.lawmate.personalproject.user.domain;
+package com.lawmate.personalproject.lawyer.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+
 import java.io.Serializable;
 
 @Entity
@@ -17,7 +18,7 @@ public class RoleModel implements Serializable  {
     Integer id ;
     @Enumerated(EnumType.STRING)
     RoleName roleName ;
-    public RoleModel (RoleName roleName) {this.roleName = roleName;}
+    public RoleModel(RoleName roleName) {this.roleName = roleName;}
     public String getRoleName() {
         return roleName.toString();
     }

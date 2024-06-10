@@ -1,6 +1,6 @@
 package com.lawmate.personalproject.common.security.domain;
 
-import com.lawmate.personalproject.user.domain.UserModel;
+import com.lawmate.personalproject.lawyer.domain.LawyerModel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,7 +11,7 @@ import java.util.Collection;
 @RequiredArgsConstructor
 public class UserDetailsDto implements UserDetails {
 
-    private final UserModel user;
+    private final LawyerModel lawyer;
     // 해당 유저의 권한을 리턴
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -27,11 +27,11 @@ public class UserDetailsDto implements UserDetails {
     }
     @Override
     public String getPassword() {
-        return user.getPassword();
+        return lawyer.getPassword();
     }
     @Override
     public String getUsername() {
-        return user.getUsername();
+        return lawyer.getUsername();
     }
     // 계정 만료
     @Override

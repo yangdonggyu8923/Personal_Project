@@ -1,8 +1,8 @@
-package com.lawmate.personalproject.user.controller;
+package com.lawmate.personalproject.lawyer.controller;
 
 import com.lawmate.personalproject.common.component.Messenger;
-import com.lawmate.personalproject.user.domain.UserDto;
-import com.lawmate.personalproject.user.service.UserServiceImpl;
+import com.lawmate.personalproject.lawyer.domain.LawyerDto;
+import com.lawmate.personalproject.lawyer.service.LawyerServiceImpl;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
@@ -20,10 +20,10 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 public class AuthController {
 
-    private final UserServiceImpl service;
+    private final LawyerServiceImpl service;
 
     @PostMapping("/login")
-    public ResponseEntity<Messenger> login(@RequestBody UserDto param) {
+    public ResponseEntity<Messenger> login(@RequestBody LawyerDto param) {
         log.info("로그인 컨트롤러에 들어온 파라미터 : " + param);
         return ResponseEntity.ok(service.login(param));
     }
