@@ -13,26 +13,48 @@ import org.springframework.stereotype.Component;
 public class LawyerDto {
     private Long id;
     private String username;
+    private String email;
     private String password;
     private String name;
     private String phone;
-    private String law;
+    private String birth;
     private String lawyerNo;
-    private String token;
-    private String office;
+    private String belong;
     private String address;
+    private String belongPhone;
+    private String image;
+    private String law;
+    private String visitCost;
+    private String phoneCost;
+    private String videoCost;
+    private String university;
+    private String major;
+    private boolean auth;
+    private boolean premium;
+    private String token;
 
     @QueryProjection
-    public LawyerDto(Long id, String username, String password, String name, String phone, String law, String lawyerNo, String token, String office, String address) {
+    public LawyerDto(Long id, String username, String email, String password, String name, String phone, String birth, String lawyerNo, String belong, String address, String belongPhone, String image, String law, String visitCost, String phoneCost, String videoCost, String university, String major, boolean auth, boolean premium, String token) {
         this.id = id;
         this.username = username;
+        this.email = email;
         this.password = password;
         this.name = name;
         this.phone = phone;
-        this.law = law;
+        this.birth = birth;
         this.lawyerNo = lawyerNo;
-        this.token = token;
-        this.office = office;
+        this.belong = belong;
         this.address = address;
+        this.belongPhone = belongPhone;
+        this.image = image;
+        this.law = law;
+        this.visitCost = visitCost;
+        this.phoneCost = phoneCost;
+        this.videoCost = videoCost;
+        this.university = university;
+        this.major = major;
+        this.auth = auth;
+        this.premium = premium;
+        this.token = token;
     }
 }

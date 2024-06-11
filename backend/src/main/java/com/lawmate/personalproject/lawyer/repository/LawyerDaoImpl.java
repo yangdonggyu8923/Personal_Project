@@ -17,28 +17,31 @@ public class LawyerDaoImpl implements LawyerDao{
 
 
     @Override
+    public void modifyLawyerTokenById(Long id, String token) {
+        jpaQueryFactory.update(lawyer)
+                .set(lawyer.token, token)
+                .set(lawyer.law, lawyer.law)
+                .set(lawyer.address, lawyer.address)
+                .set(lawyer.password, lawyer.password)
+                .where(lawyer.id.eq(id))
+                .execute();
+    }
+
+    @Override
+    public Long modifyLawyerById(LawyerDto dto) {
+        return jpaQueryFactory.update(lawyer)
+                .set(lawyer.law, dto.getLaw())
+                .set(lawyer.address, dto.getAddress())
+                .set(lawyer.password, dto.getPassword())
+                .where(lawyer.id.eq(dto.getId()))
+                .execute();
+    }
+
+    @Override
     public Long countAllLawyers() {
         return jpaQueryFactory.select(lawyer.count())
                 .from(lawyer)
                 .fetchFirst();
-    }
-
-    @Override
-    public List<LawyerDto> getAllLawyers() {
-        return jpaQueryFactory.select(
-                new QLawyerDto(
-                        lawyer.id,
-                        lawyer.lawyerNo,
-                        lawyer.law,
-                        lawyer.address,
-                        lawyer.name,
-                        lawyer.office,
-                        lawyer.password,
-                        lawyer.phone,
-                        lawyer.username,
-                        lawyer.token))
-                .from(lawyer)
-                .fetch();
     }
 
     @Override
@@ -60,7 +63,7 @@ public class LawyerDaoImpl implements LawyerDao{
     }
 
     @Override
-    public List<?> getLawyersByLaw형사법() {
+    public List<?> getCriminalLawyersByLaw() {
         return jpaQueryFactory
                 .select(lawyer.law)
                 .from(lawyer)
@@ -69,39 +72,65 @@ public class LawyerDaoImpl implements LawyerDao{
     }
 
     @Override
-    public List<?> getLawyersByLaw건설() {
+    public List<?> getPublicLawyersByLaw() {
         return jpaQueryFactory.selectFrom(lawyer)
-                .where(lawyer.law.contains("건설"))
+                .where(lawyer.law.contains("공법"))
                 .fetch();
     }
 
     @Override
-    public List<?> getLawyersByLaw부동산() {
+    public List<?> getInternationalLawyersByLaw() {
         return jpaQueryFactory.selectFrom(lawyer)
-                .where(lawyer.law.contains("부동산"))
+                .where(lawyer.law.contains("국제법"))
                 .fetch();
     }
 
     @Override
-    public List<?> getLawyersByLaw민사법() {
+    public List<?> getTradeLawyersByLaw() {
+        return jpaQueryFactory.selectFrom(lawyer)
+                .where(lawyer.law.contains("국제거래법"))
+                .fetch();
+    }
+
+    @Override
+    public List<?> getLaborLawyersByLaw() {
+        return jpaQueryFactory.selectFrom(lawyer)
+                .where(lawyer.law.contains("노동법"))
+                .fetch();
+    }
+
+    @Override
+    public List<?> getTaxLawyersByLaw() {
+        return jpaQueryFactory.selectFrom(lawyer)
+                .where(lawyer.law.contains("조세법"))
+                .fetch();
+    }
+
+    @Override
+    public List<?> getIPLawyersByLaw() {
+        return jpaQueryFactory.selectFrom(lawyer)
+                .where(lawyer.law.contains("지적재산권법"))
+                .fetch();
+    }
+
+    @Override
+    public List<?> getCivilLawyersByLaw() {
         return jpaQueryFactory.selectFrom(lawyer)
                 .where(lawyer.law.contains("민사법"))
                 .fetch();
     }
 
     @Override
-    public List<?> getLawyersByLaw손해배상() {
+    public List<?> getEconomyLawyersByLaw() {
         return jpaQueryFactory.selectFrom(lawyer)
-                .where(lawyer.law.contains("손해배상"))
+                .where(lawyer.law.contains("경제법"))
                 .fetch();
     }
 
     @Override
-    public List<?> getLawyersByLaw가사법() {
+    public List<?> getEnvironmentalLawyersByLaw() {
         return jpaQueryFactory.selectFrom(lawyer)
-                .where(lawyer.law.contains("가사법"))
+                .where(lawyer.law.contains("환경법"))
                 .fetch();
     }
-
-
 }

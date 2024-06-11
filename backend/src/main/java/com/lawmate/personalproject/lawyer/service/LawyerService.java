@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface LawyerService {
-    Messenger save(LawyerDto lawyerDto);
+    Messenger register(LawyerDto lawyerDto);
     Messenger crawl() throws IOException;
     Messenger deleteById(Long id);
     Messenger modify(LawyerDto lawyerDto);
@@ -29,9 +29,17 @@ public interface LawyerService {
                 .name(dto.getName())
                 .phone(dto.getPhone())
                 .law(dto.getLaw())
-                .lawyerNo(dto.getLawyerNo())
                 .address(dto.getAddress())
-                .office(dto.getOffice())
+                .lawyerNo(dto.getLawyerNo())
+                .belong(dto.getBelong())
+                .belongPhone(dto.getBelongPhone())
+                .image(dto.getImage())
+                .visitCost(dto.getVisitCost())
+                .phoneCost(dto.getPhoneCost())
+                .videoCost(dto.getVideoCost())
+                .university(dto.getUniversity())
+                .major(dto.getMajor())
+                .auth(dto.isAuth())
                 .build();
     }
     default LawyerDto entityToDto(LawyerModel lawyerModel){
@@ -42,9 +50,17 @@ public interface LawyerService {
                 .name(lawyerModel.getName())
                 .phone(lawyerModel.getPhone())
                 .law(lawyerModel.getLaw())
-                .lawyerNo(lawyerModel.getLawyerNo())
                 .address(lawyerModel.getAddress())
-                .office(lawyerModel.getOffice())
+                .lawyerNo(lawyerModel.getLawyerNo())
+                .belong(lawyerModel.getBelong())
+                .belongPhone(lawyerModel.getBelongPhone())
+                .image(lawyerModel.getImage())
+                .visitCost(lawyerModel.getVisitCost())
+                .phoneCost(lawyerModel.getPhoneCost())
+                .videoCost(lawyerModel.getVideoCost())
+                .university(lawyerModel.getUniversity())
+                .major(lawyerModel.getMajor())
+                .auth(lawyerModel.isAuth())
                 .build();
     }
 

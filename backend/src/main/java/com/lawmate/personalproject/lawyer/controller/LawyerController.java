@@ -24,10 +24,10 @@ public class LawyerController {
 
     private final LawyerServiceImpl service;
 
-    @PostMapping(path = "/save")
-    public ResponseEntity<Messenger> save(@RequestBody LawyerDto lawyerDto) {
+    @PostMapping(path = "/register")
+    public ResponseEntity<Messenger> register(@RequestBody LawyerDto lawyerDto) {
         log.info("입력받은 Lawyer 정보 : { }" + lawyerDto);
-        return ResponseEntity.ok(service.save(lawyerDto));
+        return ResponseEntity.ok(service.register(lawyerDto));
     }
     @GetMapping("/list")
     public ResponseEntity<List<LawyerDto>> findAll() {
@@ -46,11 +46,11 @@ public class LawyerController {
         return ResponseEntity.ok(service.count());
     }
 
-    @PutMapping("/modify")
-    public ResponseEntity<Messenger> modify(@RequestBody LawyerDto lawyerDto) {
-        log.info("입력받은 Lawyer 정보 : { }" + lawyerDto);
-        return ResponseEntity.ok(service.modify(lawyerDto));
-    }
+//    @PutMapping("/modify")
+//    public ResponseEntity<Messenger> modify(@RequestBody LawyerDto lawyerDto) {
+//        log.info("입력받은 Lawyer 정보 : { }" + lawyerDto);
+//        return ResponseEntity.ok(service.modify(lawyerDto));
+//    }
     @GetMapping("/detail")
     public ResponseEntity<LawyerDto> findById(@RequestParam("id") Long id) {
         log.info("입력받은 Lawyer 정보 : { }" + id);

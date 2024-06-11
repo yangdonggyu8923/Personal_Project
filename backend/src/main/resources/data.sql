@@ -1,38 +1,17 @@
 -- show databases;
-drop table IF EXISTS lawyers;
 
-CREATE TABLE lawyers (
-                         id BIGINT AUTO_INCREMENT PRIMARY KEY,
-                         username VARCHAR(50) NOT NULL,
-                         password VARCHAR(100) NOT NULL,
-                         name VARCHAR(100) NOT NULL,
-                         phone VARCHAR(20) NOT NULL,
-                         law VARCHAR(255) NOT NULL,
-                         lawyerNo VARCHAR(50),
-                         token VARCHAR(255),
-                         office VARCHAR(100),
-                         address VARCHAR(255)
-);
+-- 변호사 분야
+-- (공법, 민사법, 형사법, 국제법, 국제거래법,
+-- 노동법, 조세법, 지적재산권법, 경제법, 환경법)
 
--- 1번 변호사
-INSERT INTO lawyers (id, username, password, name, phone, law, lawyerNo, token, office, address)
-VALUES (1, 'dmcclure0', 'pO2(eO73)%@', '김호주', '010-1111-2222', '형사법, 이혼', '8888-9999', '', '서울법률사무소', '서울');
+-- drop table IF EXISTS lawyers;
 
--- 2번 변호사
-INSERT INTO lawyers (id, username, password, name, phone, law, lawyerNo, token, office, address)
-VALUES (2, 'jdoe', 'sEcReT123$', '김호현', '010-2222-3333', '민사법, 노동법, 지적재산권', '1234-5678', '', '', '');
 
--- 3번 변호사
-INSERT INTO lawyers (id, username, password, name, phone, law, lawyerNo, token, office, address)
-VALUES (3, 'sjones', 'aB1@cdEf', '양동규', '010-3333-4444', '부동산, 환경법', '2345-6789', '', '서울법률사무소', '');
-
--- 4번 변호사
-INSERT INTO lawyers (id, username, password, name, phone, law, lawyerNo, token, office, address)
-VALUES (4, 'mbrown', 'Pass!word45', '박주하', '010-4444-5555', '형사법, 상사법, 가사법, 의료', '3456-7890', '', '', '부산');
-
--- 5번 변호사
-INSERT INTO lawyers (id, username, password, name, phone, law, lawyerNo, token, office, address)
-VALUES (5, 'tjones', 'Qwerty@123', '김시온', '010-5555-6666', '민사법', '4567-8901', '', '해운대법률사무소', '부산 해운대구');
+INSERT INTO lawyers (username, email, password, name, phone, birth, lawyer_no, belong, address, belong_phone, law, visit_cost, phone_cost, video_cost, university, major, auth, premium) VALUES ('lawyer1', 'yangdonggyoo@example.com', 'password123', '양동규', '01012345678', '1972', '1111-2222', '서울법무법인', '서울', '02-1234-5678',  '민사법, 형사법', '3000', '1500', '2000', '고려대', '법학과', true, false);
+INSERT INTO lawyers (username, email, password, name, phone, birth, lawyer_no, belong, address, belong_phone, law, visit_cost, phone_cost, video_cost, university, major, auth, premium) VALUES ('lawyer2', 'kimhohyun@example.com', 'password123', '김호현', '01012345678', '1978', '1111-3333', '법무법인 정의', '경기', '031-1234-5678',  '공법, 국제법', '3000', '1500', '2000', '연세대', '법학과', false, true);
+INSERT INTO lawyers (username, email, password, name, phone, birth, lawyer_no, belong, address, belong_phone, law, visit_cost, phone_cost, video_cost, university, major, auth, premium) VALUES ('lawyer3', 'kimsion@example.com', 'password123', '김시온', '01012345678', '1984', '1111-4444', '법무법인 한빛', '부산', '051-1234-5678',  '국제거래법, 노동법', '3000', '1500', '2000', '부산대', '법학과', true, false);
+INSERT INTO lawyers (username, email, password, name, phone, birth, lawyer_no, belong, address, belong_phone, law, visit_cost, phone_cost, video_cost, university, major, auth, premium) VALUES ('lawyer4', 'parkjooha@example.com', 'password123', '박주하', '01012345678', '1990', '1111-5555', '법무법인 태평', '대구', '053-1234-5678',  '조세법, 지적재산권법', '3000', '1500', '2000', '경북대', '법학과', false, true);
+INSERT INTO lawyers (username, email, password, name, phone, birth, lawyer_no, belong, address, belong_phone, law, visit_cost, phone_cost, video_cost, university, major, auth, premium) VALUES ('lawyer5', 'leegeonwoo@example.com', 'password123', '김호주', '01012345678', '1994', '1111-6666', '법무법인 한울', '광주', '062-1234-5678',  '경제법, 환경법', '3000', '1500', '2000', '전남대', '법학과', true, false);
 
 
 
