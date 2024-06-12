@@ -2,11 +2,11 @@ package com.lawmate.personalproject.common.enums;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.GrantedAuthority;
+//import org.springframework.security.core.GrantedAuthority;
 import java.util.Arrays;
 @Getter
 @RequiredArgsConstructor
-public enum Role implements GrantedAuthority {
+public enum Role  {// implements GrantedAuthority
     ADMIN("ROLE_ADMIN", "관리자권한"),
     LAWYER("ROLE_LAWYER", "변호사권한"),
     UNKNOWN_USER("ROLE_UNKNOWN_USER", "알수없는 사용자");
@@ -18,8 +18,8 @@ public enum Role implements GrantedAuthority {
                 .findAny()
                 .orElse(UNKNOWN_USER);
     }
-    @Override
-    public String getAuthority() {
-        return name();
-    }
+//    @Override
+//    public String getAuthority() {
+//        return name();
+//    }
 }

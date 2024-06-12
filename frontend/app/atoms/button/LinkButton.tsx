@@ -34,11 +34,8 @@ export default function LinkButton ({id, title, path}:ILinkButton) {
 }
 
 export const linkButtonTitles = [
-    {id:1, title:'회원가입',path:`${PG.USER}/join`},
+    {id:1, title:'변호사로그인',path:`${PG.LAWYER}/login`},
     {id:2, title:'변호사가입',path:`${PG.LAWYER}/save`},
     {id:3, title:'변호사목록', path:`${PG.LAWYER}/list`} ,
-    {id:4, title:'회원목록', path:`${PG.USER}/list`} ,
-    {id:5, title:'마이페이지', path:`${PG.USER}/update/${isValidToken(token)? jwtDecode<any>(parseCookies().accessToken).userId:0}`},
-    {id:6, title:'변호사페이지', path:`${PG.LAWYER}/update/${isValidToken(token)? jwtDecode<any>(parseCookies().accessToken).lawyerId:0}`},
-    // {id:6, title:'변호사목록DBX', path:`${PG.CRAWLER}/lawyer`},
+    {id:4, title:'변호사페이지', path:`${PG.LAWYER}/update/${isValidToken(token)? jwtDecode<any>(parseCookies().accessToken).lawyerId:0}`},
 ];

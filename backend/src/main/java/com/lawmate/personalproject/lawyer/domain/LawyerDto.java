@@ -21,6 +21,7 @@ public class LawyerDto {
     private String lawyerNo;
     private String belong;
     private String address;
+    private String addressDetail;
     private String belongPhone;
     private String image;
     private String law;
@@ -34,7 +35,7 @@ public class LawyerDto {
     private String token;
 
     @QueryProjection
-    public LawyerDto(Long id, String username, String email, String password, String name, String phone, String birth, String lawyerNo, String belong, String address, String belongPhone, String image, String law, String visitCost, String phoneCost, String videoCost, String university, String major, boolean auth, boolean premium, String token) {
+    public LawyerDto(Long id, String username, String email, String password, String name, String phone, String birth, String lawyerNo, String belong, String address, String addressDetail, String belongPhone, String image, String law, String visitCost, String phoneCost, String videoCost, String university, String major, boolean auth, boolean premium, String token) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -45,6 +46,7 @@ public class LawyerDto {
         this.lawyerNo = lawyerNo;
         this.belong = belong;
         this.address = address;
+        this.addressDetail = addressDetail;
         this.belongPhone = belongPhone;
         this.image = image;
         this.law = law;
@@ -58,3 +60,4 @@ public class LawyerDto {
         this.token = token;
     }
 }
+

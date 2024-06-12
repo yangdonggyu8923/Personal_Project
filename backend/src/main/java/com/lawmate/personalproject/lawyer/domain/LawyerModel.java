@@ -30,6 +30,7 @@ public class LawyerModel {
     // 회원가입 후 추가 정보
     private String belong;
     private String address;
+    private String addressDetail;
     private String belongPhone;
     private String image;
     private String law;

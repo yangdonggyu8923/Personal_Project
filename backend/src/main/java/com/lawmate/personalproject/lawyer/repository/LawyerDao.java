@@ -1,6 +1,7 @@
 package com.lawmate.personalproject.lawyer.repository;
 
 import com.lawmate.personalproject.lawyer.domain.LawyerDto;
+import com.lawmate.personalproject.lawyer.domain.LawyerModel;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;

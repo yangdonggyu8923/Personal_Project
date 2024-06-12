@@ -1,6 +1,7 @@
 package com.lawmate.personalproject.lawyer.repository;
 
 import com.lawmate.personalproject.lawyer.domain.LawyerDto;
+import com.lawmate.personalproject.lawyer.domain.LawyerModel;
 import com.lawmate.personalproject.lawyer.domain.QLawyerDto;
 import com.lawmate.personalproject.lawyer.domain.QLawyerModel;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -63,72 +64,70 @@ public class LawyerDaoImpl implements LawyerDao{
     }
 
     @Override
-    public List<?> getCriminalLawyersByLaw() {
-        return jpaQueryFactory
-                .select(lawyer.law)
-                .from(lawyer)
+    public List<LawyerModel> getCriminalLawyersByLaw() {
+        return jpaQueryFactory.selectFrom(lawyer)
                 .where(lawyer.law.contains("형사법"))
                 .fetch();
     }
 
     @Override
-    public List<?> getPublicLawyersByLaw() {
+    public List<LawyerModel> getPublicLawyersByLaw() {
         return jpaQueryFactory.selectFrom(lawyer)
                 .where(lawyer.law.contains("공법"))
                 .fetch();
     }
 
     @Override
-    public List<?> getInternationalLawyersByLaw() {
+    public List<LawyerModel> getInternationalLawyersByLaw() {
         return jpaQueryFactory.selectFrom(lawyer)
                 .where(lawyer.law.contains("국제법"))
                 .fetch();
     }
 
     @Override
-    public List<?> getTradeLawyersByLaw() {
+    public List<LawyerModel> getTradeLawyersByLaw() {
         return jpaQueryFactory.selectFrom(lawyer)
                 .where(lawyer.law.contains("국제거래법"))
                 .fetch();
     }
 
     @Override
-    public List<?> getLaborLawyersByLaw() {
+    public List<LawyerModel> getLaborLawyersByLaw() {
         return jpaQueryFactory.selectFrom(lawyer)
                 .where(lawyer.law.contains("노동법"))
                 .fetch();
     }
 
     @Override
-    public List<?> getTaxLawyersByLaw() {
+    public List<LawyerModel> getTaxLawyersByLaw() {
         return jpaQueryFactory.selectFrom(lawyer)
                 .where(lawyer.law.contains("조세법"))
                 .fetch();
     }
 
     @Override
-    public List<?> getIPLawyersByLaw() {
+    public List<LawyerModel> getIPLawyersByLaw() {
         return jpaQueryFactory.selectFrom(lawyer)
                 .where(lawyer.law.contains("지적재산권법"))
                 .fetch();
     }
 
     @Override
-    public List<?> getCivilLawyersByLaw() {
+    public List<LawyerModel> getCivilLawyersByLaw() {
         return jpaQueryFactory.selectFrom(lawyer)
                 .where(lawyer.law.contains("민사법"))
                 .fetch();
     }
 
     @Override
-    public List<?> getEconomyLawyersByLaw() {
+    public List<LawyerModel> getEconomyLawyersByLaw() {
         return jpaQueryFactory.selectFrom(lawyer)
                 .where(lawyer.law.contains("경제법"))
                 .fetch();
     }
 
     @Override
-    public List<?> getEnvironmentalLawyersByLaw() {
+    public List<LawyerModel> getEnvironmentalLawyersByLaw() {
         return jpaQueryFactory.selectFrom(lawyer)
                 .where(lawyer.law.contains("환경법"))
                 .fetch();

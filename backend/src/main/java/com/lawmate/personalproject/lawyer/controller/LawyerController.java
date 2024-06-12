@@ -1,6 +1,8 @@
 package com.lawmate.personalproject.lawyer.controller;
 import com.lawmate.personalproject.common.component.Messenger;
 import com.lawmate.personalproject.lawyer.domain.LawyerDto;
+import com.lawmate.personalproject.lawyer.domain.LawyerModel;
+import com.lawmate.personalproject.lawyer.repository.LawyerDaoImpl;
 import com.lawmate.personalproject.lawyer.service.LawyerServiceImpl;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -23,6 +25,7 @@ import java.util.List;
 public class LawyerController {
 
     private final LawyerServiceImpl service;
+    private final LawyerDaoImpl dao;
 
     @PostMapping(path = "/register")
     public ResponseEntity<Messenger> register(@RequestBody LawyerDto lawyerDto) {
@@ -75,9 +78,9 @@ public class LawyerController {
         return ResponseEntity.ok(flag);
     }
 
-//    @GetMapping("/list")
-//    public ResponseEntity<List<LawyerDto>> getLawyersById() {
-//        log.info("입력받은 Lawyer 정보 : { }" + service.getLawyersById().toString());
-//        return ResponseEntity.ok(service.getLawyersById());
-//    }
+    @GetMapping("/criminal")
+    public ResponseEntity<List<?>> getLawyersById() {
+        log.info("입력받은 Lawyer 정보 : { }" + dao.getCriminalLawyersByLaw().toString());
+        return ResponseEntity.ok(dao.getCriminalLawyersByLaw());
+    }
 }
