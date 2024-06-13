@@ -1,14 +1,25 @@
-import { ILawyers } from "../model/lawyers-model";
+import { ILawyers } from "../model/lawyers-model"
 
 export const initialState: ILawyers = {
     id: 0,
     username: "",
     password: "",
+    email: "",
+    birth: "",
     name: "",
     phone: "",
+    image: "",
+    visitCost: "",
+    phoneCost: "",
+    videoCost: "",
+    university: "",
+    major: "",
     law: "",
     lawyerNo: "",
-    office: "",
+    belong: "",
     address: "",
-    count: 0
+    addressDetail: "",
+    belongPhone: "",
+    premium: false,
+    auth: true,
 }

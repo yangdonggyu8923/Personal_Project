@@ -60,9 +60,9 @@ export default function LawyerColumns(): GridColDef[] {
             flex: 0.04,
             minWidth: 30,
             sortable: false,
-            field: 'law',
-            headerName: '담당분야',
-            renderCell: ({ row }: CellType) => <Typography textAlign="center" sx={{ fontSize: "1.2rem" }}>{row.law}</Typography>
+            field: 'birth',
+            headerName: '출생년도',
+            renderCell: ({ row }: CellType) => <Typography textAlign="center" sx={{ fontSize: "1.2rem" }}>{row.birth}</Typography>
         },
         {
             flex: 0.04,
@@ -72,13 +72,22 @@ export default function LawyerColumns(): GridColDef[] {
             headerName: '자격번호',
             renderCell: ({ row }: CellType) => <Typography textAlign="center" sx={{ fontSize: "1.2rem" }}>{row.lawyerNo}</Typography>
         },
+
         {
             flex: 0.04,
             minWidth: 30,
             sortable: false,
-            field: 'office',
-            headerName: '사무소',
-            renderCell: ({ row }: CellType) => <Typography textAlign="center" sx={{ fontSize: "1.2rem" }}>{row.office}</Typography>
+            field: 'law',
+            headerName: '담당분야',
+            renderCell: ({ row }: CellType) => <Typography textAlign="center" sx={{ fontSize: "1.2rem" }}>{row.law}</Typography>
+        },
+        {
+            flex: 0.04,
+            minWidth: 30,
+            sortable: false,
+            field: 'belong',
+            headerName: '소속',
+            renderCell: ({ row }: CellType) => <Typography textAlign="center" sx={{ fontSize: "1.2rem" }}>{row.belong}</Typography>
         },
         {
             flex: 0.04,
@@ -87,6 +96,70 @@ export default function LawyerColumns(): GridColDef[] {
             field: 'address',
             headerName: '주소',
             renderCell: ({ row }: CellType) => <Typography textAlign="center" sx={{ fontSize: "1.2rem" }}>{row.address}</Typography>
+        },
+        {
+            flex: 0.04,
+            minWidth: 30,
+            sortable: false,
+            field: 'addressDetail',
+            headerName: '추가 주소',
+            renderCell: ({ row }: CellType) => <Typography textAlign="center" sx={{ fontSize: "1.2rem" }}>{row.addressDetail}</Typography>
+        },
+        {
+            flex: 0.04,
+            minWidth: 30,
+            sortable: false,
+            field: 'belongPhone',
+            headerName: '소속 전화번호',
+            renderCell: ({ row }: CellType) => <Typography textAlign="center" sx={{ fontSize: "1.2rem" }}>{row.belongPhone}</Typography>
+        },
+        {
+            flex: 0.04,
+            minWidth: 30,
+            sortable: false,
+            field: 'visitCost',
+            headerName: '방문상담비용',
+            renderCell: ({ row }: CellType) => <Typography textAlign="center" sx={{ fontSize: "1.2rem" }}>{row.visitCost}</Typography>
+        },
+        {
+            flex: 0.04,
+            minWidth: 30,
+            sortable: false,
+            field: 'phoneCost',
+            headerName: '전화상담비용',
+            renderCell: ({ row }: CellType) => <Typography textAlign="center" sx={{ fontSize: "1.2rem" }}>{row.phoneCost}</Typography>
+        },
+        {
+            flex: 0.04,
+            minWidth: 30,
+            sortable: false,
+            field: 'videoCost',
+            headerName: '영상상담비용',
+            renderCell: ({ row }: CellType) => <Typography textAlign="center" sx={{ fontSize: "1.2rem" }}>{row.videoCost}</Typography>
+        },
+        {
+            flex: 0.04,
+            minWidth: 30,
+            sortable: false,
+            field: 'university',
+            headerName: '대학교',
+            renderCell: ({ row }: CellType) => <Typography textAlign="center" sx={{ fontSize: "1.2rem" }}>{row.university}</Typography>
+        },
+        {
+            flex: 0.04,
+            minWidth: 30,
+            sortable: false,
+            field: 'major',
+            headerName: '학과',
+            renderCell: ({ row }: CellType) => <Typography textAlign="center" sx={{ fontSize: "1.2rem" }}>{row.major}</Typography>
+        },
+        {
+            flex: 0.04,
+            minWidth: 30,
+            sortable: false,
+            field: 'premium',
+            headerName: '프리미엄',
+            renderCell: ({ row }: CellType) => <Typography textAlign="center" sx={{ fontSize: "1.2rem" }}>{row.premium}</Typography>
         },
         {
             flex: 0.04,

@@ -20,7 +20,13 @@ const JoinAdditionalPage: NextPage = () => {
     belong: "",
     belongPhone: "",
     address: "",
-    adressDetail: ""
+    adressDetail: "",
+    image: "",
+    visitCost: "",
+    phoneCost: "",
+    videoCost: "",
+    university: "",
+    major: "",
   });
 
   const { law, belong, belongPhone, address, adressDetail } = inputs;

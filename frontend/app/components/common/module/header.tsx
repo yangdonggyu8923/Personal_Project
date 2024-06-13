@@ -84,14 +84,6 @@ function Header() {
 };
 
   useEffect(() => {
-    // 유저
-    if (isValidToken(sampletoken)? jwtDecode<any>(parseCookies().accessToken).userId:0) {
-      setShowProfile(true)
-      dispatch(findUserById(jwtDecode<any>(parseCookies().accessToken).userId))
-    } else {
-      setShowProfile(false)
-    }
-    // 변호사
     if (isValidToken(sampletoken)? jwtDecode<any>(parseCookies().accessToken).lawyerId:0) {
       setShowLawyerProfile(true)
 

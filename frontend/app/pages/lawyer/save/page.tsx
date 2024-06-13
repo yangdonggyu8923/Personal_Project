@@ -26,12 +26,13 @@ const JoinPage: NextPage = () =>  {
   const [inputs, setInputs] = useState({
     username: "",
     password: "",
+    email: "",
     name: "",
     phone: "",
     lawyerNo: "",
   });
 
-  const { username, password, name, phone, lawyerNo } = inputs;
+  const { username, password, name, email, phone, lawyerNo } = inputs;
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
@@ -62,7 +63,7 @@ const JoinPage: NextPage = () =>  {
   const handleSubmit = (e: any) => {
     e.preventDefault();
     const url = `${process.env.NEXT_PUBLIC_API_URL}/lawyers/register`;
-    const data = { username, password, name, phone,lawyerNo};
+    const data = { username, password, name, email, phone, lawyerNo};
     const config = {
       headers:{
         "Cache-Control": "no-cache",
@@ -99,6 +100,11 @@ const JoinPage: NextPage = () =>  {
         <div className="flex items-center mb-4">
           <label htmlFor="password" className="block text-gray-700 text-sm font-bold mr-2 flex-none" style={{width: '100px'}}><b>비밀번호</b></label>
           <input type="password" className="bg-gray-100 border border-gray-300 p-2 flex-grow" style={{flexBasis: 0, flexGrow: 1}} placeholder="비밀번호를 입력하세요" name="password" onChange={handleChange} value={password} required /><br />
+        </div>
+
+        <div className="flex items-center mb-4">
+          <label htmlFor="email" className="block text-gray-700 text-sm font-bold mr-2 flex-none" style={{width: '100px'}}><b>이메일</b></label>
+          <input type="text" className="bg-gray-100 border border-gray-300 p-2 flex-grow" style={{flexBasis: 0, flexGrow: 1}} placeholder="이메일를 입력하세요" name="email" onChange={handleChange} value={email} required /><br />
         </div>
 
         <div className="flex items-center mb-4">

@@ -73,7 +73,7 @@ export const deleteLawyerByIdAPI = async (id: number) => {
 export const loginLawyerAPI = async (lawyer: ILawyers) => {
     console.log(` 로그인API 에 넘어온 파라미터 : ${JSON.stringify(lawyer)}`)
     try{
-        const response = await instance().post(`/auth/llogin`,lawyer)
+        const response = await instance().post(`/auth/login`,lawyer)
         return response.data
     }catch(error){
         console.log(error)
@@ -83,7 +83,7 @@ export const loginLawyerAPI = async (lawyer: ILawyers) => {
 
 export const existsIdAPI = async (username: string) => {
     try {
-        const response = await instance().get('/auth/exists-law-username',
+        const response = await instance().get('/auth/exists-username',
             { params: { username } })
         return response.data
     } catch (error) {
