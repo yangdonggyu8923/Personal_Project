@@ -9,8 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { parseCookies, destroyCookie, setCookie } from "nookies"
 import { jwtDecode } from "jwt-decode";
-import { getAuth } from "@/app/components/user/service/user-slice";
-import { existsLawyer } from "@/app/components/lawyer/service/lawyer-slice";
+import { existsLawyer, getAuth } from "@/app/components/lawyer/service/lawyer-slice";
 import { ILawyers } from "@/app/components/lawyer/model/lawyers-model";
 import { existsId, loginLawyer } from "@/app/components/lawyer/service/lawyer-service";
 import { PG } from "@/app/components/common/enums/PG";

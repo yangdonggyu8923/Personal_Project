@@ -6,7 +6,6 @@ import "./globals.css";
 import dynamic from "next/dynamic";
 import Header from "./components/common/module/header";
 import { useEffect, useState } from "react";
-import { getAuth } from "./components/user/service/user-slice";
 import { useSelector } from "react-redux";
 import DashHeader from "./components/common/module/dash-header";
 
@@ -44,7 +43,8 @@ export default function RootLayout({
         
         <div className="mt-100">
         <ReduxProvider>
-        {parseCookies().message === 'SUCCESS' && <Header/>}
+        {/* {parseCookies().message === 'SUCCESS' && <Header/>} */}
+        {<Header/>}
         {parseCookies().message === 'ADMIN' && <DashHeader/>} 
         {children}</ReduxProvider>
         </div>

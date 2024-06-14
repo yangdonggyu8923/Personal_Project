@@ -1,0 +1,99 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #333;
+  color: white;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.navLinks {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.navLinks a {
+  color: white;
+  text-decoration: none;
+}
+
+.mainContent {
+  padding: 20px;
+}
+
+.heroSection {
+  text-align: center;
+  padding: 50px 20px;
+  background-color: #f4f4f4;
+}
+
+.heroSection h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.heroSection p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.primaryButton {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #333;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.primaryButton:hover {
+  background-color: #005bb5;
+}
+
+.lawyerSection {
+  padding: 20px;
+}
+
+.lawyerSection h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.lawyerList {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.lawyerCard {
+  text-align: center;
+  width: 200px;
+  margin-bottom: 20px;
+}
+
+.lawyerImage {
+  width: 100%;
+  border-radius: 50%;
+}
+
+.footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #333;
+  color: white;
+}
+
+.socialLinks {
+  margin-top: 10px;
+}
+
+.socialLinks a {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
+}
