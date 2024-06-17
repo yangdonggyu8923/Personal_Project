@@ -24,8 +24,6 @@ export const crawlingLawyers: any = createAsyncThunk(
     }
 )
 
-
-// 아래 미구현
 export const findLawyerById: any = createAsyncThunk(
     'lawyers/findLawyerById',
     async (id: number) => {

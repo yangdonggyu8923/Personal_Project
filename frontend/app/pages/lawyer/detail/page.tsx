@@ -14,6 +14,7 @@ declare global {
 }
 
 const JoinAdditionalPage: NextPage = () => {
+
   const [inputs, setInputs] = useState({
     law: "",
     lawyerNo: "",
@@ -137,6 +138,7 @@ const JoinAdditionalPage: NextPage = () => {
           <button className="btn bg-blue-500 text-white py-2 px-4 rounded-xl font-bold uppercase hover:bg-blue-600 transition-colors duration-300" onClick={handleOutSubmit}>다음에 할게요</button>
         </div>
       </div>
+      
     </>
   );
 }

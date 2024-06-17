@@ -13,7 +13,11 @@ INSERT INTO lawyers (username, email, password, name, phone, birth, lawyer_no, b
 INSERT INTO lawyers (username, email, password, name, phone, birth, lawyer_no, belong, address, belong_phone, law, visit_cost, phone_cost, video_cost, university, major, auth, premium) VALUES ('lawyer4', 'parkjooha@example.com', 'password123', '박주하', '01012345678', '1990', '1111-5555', '법무법인 태평', '대구', '053-1234-5678',  '조세법, 지적재산권법', '3000', '1500', '2000', '경북대', '법학과', false, true);
 INSERT INTO lawyers (username, email, password, name, phone, birth, lawyer_no, belong, address, belong_phone, law, visit_cost, phone_cost, video_cost, university, major, auth, premium) VALUES ('lawyer5', 'leegeonwoo@example.com', 'password123', '김호주', '01012345678', '1994', '1111-6666', '법무법인 한울', '광주', '062-1234-5678',  '경제법, 환경법', '3000', '1500', '2000', '전남대', '법학과', true, false);
 
+INSERT INTO replies (content, reg_date, mod_date) VALUES ('내용1', '2021-07-01', '2021-07-01');
+INSERT INTO replies (content, reg_date, mod_date) VALUES ('내용2', '2021-07-01', '2021-07-02');
+INSERT INTO replies (content, reg_date, mod_date) VALUES ('내용3', '2021-07-01', '2021-07-03');
 
-
-
+INSERT INTO articles (title, content, reg_date, mod_date) VALUES ('제목1', '내용1', '2021-07-01', '2021-07-01');
+INSERT INTO articles (title, content, reg_date, mod_date) VALUES ('제목2', '내용2', '2021-07-02', '2021-07-02');
+INSERT INTO articles (title, content, reg_date, mod_date) VALUES ('제목3', '내용3', '2021-07-03', '2021-07-03');
 

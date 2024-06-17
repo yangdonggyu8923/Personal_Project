@@ -34,6 +34,10 @@ public class LawyerDaoImpl implements LawyerDao{
                 .set(lawyer.law, dto.getLaw())
                 .set(lawyer.address, dto.getAddress())
                 .set(lawyer.password, dto.getPassword())
+                .set(lawyer.phone, dto.getPhone())
+                .set(lawyer.belong, dto.getBelong())
+                .set(lawyer.startTime, dto.getStartTime())
+                .set(lawyer.endTime, dto.getEndTime())
                 .where(lawyer.id.eq(dto.getId()))
                 .execute();
     }

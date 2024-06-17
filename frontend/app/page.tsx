@@ -11,6 +11,10 @@ const HomePage = () => {
     router.push(`${PG.LAWYER}/list`);
   };
 
+  const navigateToCalender = () => {
+    router.push(`${PG.LAWYER}/calender`);
+  };
+
   return (
     <>
       {/* <header className={styles.header}>
@@ -29,6 +33,7 @@ const HomePage = () => {
           <h1>신뢰할 수 있는 변호사를 찾으세요</h1>
           <p>당신의 법적 문제를 해결해줄 최고의 변호사를 만나보세요</p>
           <button className={styles.primaryButton} onClick={navigateToFindLawyer}>변호사 찾기</button>
+          <button className={styles.secondaryButton} onClick={navigateToCalender}>문의하기</button>
         </section>
 
         <section className={styles.lawyerSection}>
@@ -36,18 +41,18 @@ const HomePage = () => {
           <div className={styles.lawyerList}>
             <div className={styles.lawyerCard}>
               <img src="/lawyer1.jpg" alt="Lawyer 1" className={styles.lawyerImage} />
-              <h3>김변호사</h3>
+              <h3>김 변호사</h3>
               <p>형사법 전문</p>
             </div>
             <div className={styles.lawyerCard}>
               <img src="/lawyer2.jpg" alt="Lawyer 2" className={styles.lawyerImage} />
-              <h3>이변호사</h3>
-              <p>가족법 전문</p>
+              <h3>이 변호사</h3>
+              <p>공법 전문</p>
             </div>
             <div className={styles.lawyerCard}>
               <img src="/lawyer3.jpg" alt="Lawyer 3" className={styles.lawyerImage} />
-              <h3>박변호사</h3>
-              <p>기업법 전문</p>
+              <h3>박 변호사</h3>
+              <p>지적재산권법 전문</p>
             </div>
           </div>
         </section>
@@ -55,11 +60,11 @@ const HomePage = () => {
 
       <footer className={styles.footer}>
         <p>&copy; 2024 LawMate. All rights reserved.</p>
-        <div className={styles.socialLinks}>
+        {/* <div className={styles.socialLinks}>
           <a href="https://facebook.com">Facebook</a>
           <a href="https://twitter.com">Twitter</a>
           <a href="https://instagram.com">Instagram</a>
-        </div>
+        </div> */}
       </footer>
     </>
   );

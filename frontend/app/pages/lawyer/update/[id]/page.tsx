@@ -153,8 +153,8 @@ const handleDeleteLawyer = () =>{
         <label htmlFor="office" className="block text-gray-700 text-sm font-bold mr-2 flex-none" style={{width: '100px'}}>
             사무소
         </label>
-        <input {...register('office', {required: false, maxLength:40})} 
-        className="bg-gray-100 border border-gray-300 p-2 flex-grow" style={{flexBasis: 0, flexGrow: 1}} placeholder={oneLawyer.office} defaultValue={oneLawyer.office} type="text" name="office"/>
+        <input {...register('belong', {required: false, maxLength:40})} 
+        className="bg-gray-100 border border-gray-300 p-2 flex-grow" style={{flexBasis: 0, flexGrow: 1}} placeholder={oneLawyer.belong} defaultValue={oneLawyer.belong} type="text" name="belong"/>
     </div>
 
     <div className="flex items-center mb-4">

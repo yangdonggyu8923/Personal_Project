@@ -2,6 +2,8 @@ import { combineReducers } from "@reduxjs/toolkit";
 import { persistReducer } from "redux-persist";
 import createWebStorage from "redux-persist/lib/storage/createWebStorage";
 import lawyerReducer from "@/app/components/lawyer/service/lawyer-slice"
+import articleReducer from "@/app/components/article/service/article-slice"
+import replyReducer from "@/app/components/reply/service/reply-slice"
 
 
 const createNoopStorage = () => {
@@ -29,11 +31,26 @@ const lawyerPersistConfig = {
   whitelist: ["lawyerState"],
 };
 
+const replyPersistConfig = {
+  key: "reply",
+  storage,
+  whitelist: ["replyState"],
+};
+
+const articlePersistConfig = {
+  key: "article",
+  storage,
+  whitelist: ["articleState"],
+};
+
 
 
 
 const persistedLawyerReducer = persistReducer(lawyerPersistConfig, lawyerReducer);
+const persistedArticleReducer = persistReducer(articlePersistConfig, articleReducer);
+const persistedReplyReducer = persistReducer(replyPersistConfig, replyReducer);
 
-export const rootReducer = combineReducers({  // combineReducers({})는 키(상태)를 합치는 것
-  lawyer: persistedLawyerReducer,               // count, article, user
-});
+export const rootReducer = combineReducers({  
+  lawyer: persistedLawyerReducer,
+  article: persistedArticleReducer,
+  reply: persistedReplyReducer      })   

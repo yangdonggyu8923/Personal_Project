@@ -40,6 +40,13 @@ public interface LawyerService {
                 .university(dto.getUniversity())
                 .major(dto.getMajor())
                 .auth(dto.isAuth())
+                .startTime(dto.getStartTime())
+                .endTime(dto.getEndTime())
+                .account(dto.getAccount())
+                .premium(dto.isPremium())
+                .email(dto.getEmail())
+                .addressDetail(dto.getAddressDetail())
+                .birth(dto.getBirth())
                 .build();
     }
     default LawyerDto entityToDto(LawyerModel lawyerModel){
@@ -61,6 +68,13 @@ public interface LawyerService {
                 .university(lawyerModel.getUniversity())
                 .major(lawyerModel.getMajor())
                 .auth(lawyerModel.isAuth())
+                .startTime(lawyerModel.getStartTime())
+                .endTime(lawyerModel.getEndTime())
+                .account(lawyerModel.getAccount())
+                .birth(lawyerModel.getBirth())
+                .email(lawyerModel.getEmail())
+                .premium(lawyerModel.isPremium())
+                .addressDetail(lawyerModel.getAddressDetail())
                 .build();
     }
 

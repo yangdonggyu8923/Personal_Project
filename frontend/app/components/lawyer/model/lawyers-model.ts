@@ -21,4 +21,8 @@ export interface ILawyers{
     premium?: boolean;
     auth?: boolean;
     count?: number;
+    account?: String;
+    startTime?: string;
+    endTime?: string;
+    
 }

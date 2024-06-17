@@ -20,4 +20,7 @@ export interface LawyerColumn{
     belongPhone?: string;
     premium?: boolean;
     auth?: boolean;
+    account?: String;
+    startTime?: string;
+    endTime?: string;
 }

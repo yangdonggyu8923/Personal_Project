@@ -22,4 +22,7 @@ export const initialState: ILawyers = {
     belongPhone: "",
     premium: false,
     auth: true,
+    account: "",
+    startTime: "",
+    endTime: "",
 }

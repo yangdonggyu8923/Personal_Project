@@ -36,5 +36,6 @@ export const linkButtonTitles = [
     {id:1, title:'변호사로그인',path:`${PG.LAWYER}/login`},
     {id:2, title:'변호사가입',path:`${PG.LAWYER}/save`},
     {id:3, title:'변호사목록', path:`${PG.LAWYER}/list`} ,
-    {id:4, title:'변호사페이지', path:`${PG.LAWYER}/update/${isValidToken(token)? jwtDecode<any>(parseCookies().accessToken).lawyerId:0}`},
+    {id:4, title:'게시글목록', path:`${PG.ARTICLE}/list`} ,
+    {id:5, title:'변호사페이지', path:`${PG.LAWYER}/update/${isValidToken(token)? jwtDecode<any>(parseCookies().accessToken).lawyerId:0}`},
 ];

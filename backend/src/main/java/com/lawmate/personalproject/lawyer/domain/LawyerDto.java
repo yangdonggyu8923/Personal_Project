@@ -5,6 +5,10 @@ import jakarta.persistence.Column;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+
 @Data
 @Component
 @ToString
@@ -30,12 +34,20 @@ public class LawyerDto {
     private String videoCost;
     private String university;
     private String major;
+    private String account;
+
+
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
+
     private boolean auth;
     private boolean premium;
+
+
     private String token;
 
     @QueryProjection
-    public LawyerDto(Long id, String username, String email, String password, String name, String phone, String birth, String lawyerNo, String belong, String address, String addressDetail, String belongPhone, String image, String law, String visitCost, String phoneCost, String videoCost, String university, String major, boolean auth, boolean premium, String token) {
+    public LawyerDto(Long id, String username, String email, String password, String name, String phone, String birth, String lawyerNo, String belong, String address, String addressDetail, String belongPhone, String image, String law, String visitCost, String phoneCost, String videoCost, String university, String major, String account, LocalDateTime startTime, LocalDateTime endTime, boolean auth, boolean premium, String token) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -55,6 +67,9 @@ public class LawyerDto {
         this.videoCost = videoCost;
         this.university = university;
         this.major = major;
+        this.account = account;
+        this.startTime = startTime;
+        this.endTime = endTime;
         this.auth = auth;
         this.premium = premium;
         this.token = token;

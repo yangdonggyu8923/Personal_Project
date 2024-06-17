@@ -49,7 +49,7 @@ export const lawyerSlice = createSlice({
         .addCase(modifyLawyer.fulfilled, (state: any, { payload }: any) => { state.json = payload })
         .addCase(deleteLawyerById.fulfilled, (state: any, { payload }: any) => { state.json = payload })
         .addCase(existsId.fulfilled, (state: any, { payload }: any) => { state.json = payload })
-        .addCase(updateLawyer.fulfilled, (state: any, { payload }: any) => { state.json = payload })      
+        .addCase(updateLawyer.fulfilled, (state: any, { payload }: any) => { state.json = payload })
     }
 })
 

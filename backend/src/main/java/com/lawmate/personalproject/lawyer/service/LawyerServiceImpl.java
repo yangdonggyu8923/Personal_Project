@@ -114,7 +114,6 @@ public class LawyerServiceImpl implements LawyerService {
     @Transactional
     @Override
     public Messenger update(LawyerDto lawyerDto) {
-
         return repository.modifyLawyerById(lawyerDto)==1 ?
                 Messenger.builder().message("SUCCESS").build() :
                 Messenger.builder().message("FAILURE").build();
