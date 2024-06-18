@@ -15,8 +15,6 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class ReplyDto {
     private Long id;
-    //    private Board boardId;
-    //    private Lawyer lawyer;
     private String content;
     private LocalDateTime regDate;
     private LocalDateTime modDate;

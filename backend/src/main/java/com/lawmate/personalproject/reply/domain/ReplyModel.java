@@ -1,7 +1,5 @@
 package com.lawmate.personalproject.reply.domain;
 
-
-import com.lawmate.personalproject.lawyer.domain.LawyerModel;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,8 +17,6 @@ public class ReplyModel {
     @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-//    private Board boardId;
-//    private Lawyer lawyer;
     private String content;
     private LocalDateTime regDate;
     private LocalDateTime modDate;

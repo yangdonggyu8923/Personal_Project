@@ -2,10 +2,7 @@ package com.lawmate.personalproject.lawyer.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 @Entity(name = "lawyers")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -42,7 +39,6 @@ public class LawyerModel {
     private String videoCost;
     private String university;
     private String major;
-
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private String account;
@@ -53,6 +49,7 @@ public class LawyerModel {
     // 변호사 프리미엄 계정
     private boolean premium;
 
+    // 토큰
     private String token;
 
 

@@ -14,7 +14,6 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class ArticleDto {
     private Long id;
-    //    private LawyerModel lawyer;
     private String title;
     private String content;
     private LocalDateTime regDate;

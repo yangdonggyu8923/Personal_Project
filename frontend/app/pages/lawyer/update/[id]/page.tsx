@@ -21,8 +21,6 @@ const UpdateLaywerPage:NextPage = () => {
   const oneLawyer:ILawyers = useSelector(getOneLawyer)
   const token:string|null = parseCookies().accessToken;
 
-  const initialSelectedLaws = oneLawyer.law ? oneLawyer.law.split(',') : [];
-
   const options = [
     { value: '형사법', label: '형사법' },
     { value: '민사법', label: '민사법' },
@@ -150,8 +148,8 @@ const handleDeleteLawyer = () =>{
     </div>
 
     <div className="flex items-center mb-4">
-        <label htmlFor="office" className="block text-gray-700 text-sm font-bold mr-2 flex-none" style={{width: '100px'}}>
-            사무소
+        <label htmlFor="belong" className="block text-gray-700 text-sm font-bold mr-2 flex-none" style={{width: '100px'}}>
+            소속
         </label>
         <input {...register('belong', {required: false, maxLength:40})} 
         className="bg-gray-100 border border-gray-300 p-2 flex-grow" style={{flexBasis: 0, flexGrow: 1}} placeholder={oneLawyer.belong} defaultValue={oneLawyer.belong} type="text" name="belong"/>

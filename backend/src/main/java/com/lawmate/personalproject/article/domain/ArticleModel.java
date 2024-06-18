@@ -1,6 +1,5 @@
 package com.lawmate.personalproject.article.domain;
 
-import com.lawmate.personalproject.lawyer.domain.LawyerModel;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,7 +19,6 @@ public class ArticleModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-//    private LawyerModel lawyer;
     private String title;
     private String content;
     private LocalDateTime regDate;
