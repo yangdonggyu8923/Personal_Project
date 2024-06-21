@@ -11,10 +11,6 @@ const HomePage = () => {
     router.push(`${PG.LAWYER}/list`);
   };
 
-  const navigateToCalender = () => {
-    router.push(`${PG.LAWYER}/calender`);
-  };
-
   return (
     <>
       {/* <header className={styles.header}>
@@ -33,7 +29,6 @@ const HomePage = () => {
           <h1>신뢰할 수 있는 변호사를 찾으세요</h1>
           <p>당신의 법적 문제를 해결해줄 최고의 변호사를 만나보세요</p>
           <button className={styles.primaryButton} onClick={navigateToFindLawyer}>변호사 찾기</button>
-          <button className={styles.secondaryButton} onClick={navigateToCalender}>문의하기</button>
         </section>
 
         <section className={styles.lawyerSection}>

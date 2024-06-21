@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { ILawyers } from "../model/lawyers-model";
-import { countLawyers, crawlingLawyers, deleteLawyerById, existsId, findAllLawyers, findLawyerById, loginLawyer, modifyLawyer, updateLawyer } from "./lawyer-service";
+import { countLawyers, deleteLawyerById, existsId, findAllLawyers, findLawyerById, loginLawyer, modifyLawyer, updateLawyer } from "./lawyer-service";
 
 const lawyerThunks = [findAllLawyers]
 
@@ -41,7 +41,6 @@ export const lawyerSlice = createSlice({
         const { pending, rejected } = status;
 
         builder
-        .addCase(crawlingLawyers.fulfilled, (state: any, { payload }: any) => { state.array = payload })
         .addCase(findAllLawyers.fulfilled, (state: any, { payload }: any) => { state.array = payload })
         .addCase(findLawyerById.fulfilled, (state: any, { payload }: any) => { state.json = payload })
         .addCase(countLawyers.fulfilled, (state: any, { payload }: any) => { state.count = payload })

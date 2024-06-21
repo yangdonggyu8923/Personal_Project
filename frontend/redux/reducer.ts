@@ -4,6 +4,7 @@ import createWebStorage from "redux-persist/lib/storage/createWebStorage";
 import lawyerReducer from "@/app/components/lawyer/service/lawyer-slice"
 import articleReducer from "@/app/components/article/service/article-slice"
 import replyReducer from "@/app/components/reply/service/reply-slice"
+import resReducer from "@/app/components/reservation/service/res-slice"
 
 
 const createNoopStorage = () => {
@@ -42,6 +43,11 @@ const articlePersistConfig = {
   storage,
   whitelist: ["articleState"],
 };
+const resPersistConfig = {
+  key: "res",
+  storage,
+  whitelist: ["resState"],
+};
 
 
 
@@ -49,8 +55,10 @@ const articlePersistConfig = {
 const persistedLawyerReducer = persistReducer(lawyerPersistConfig, lawyerReducer);
 const persistedArticleReducer = persistReducer(articlePersistConfig, articleReducer);
 const persistedReplyReducer = persistReducer(replyPersistConfig, replyReducer);
+const persistedResReducer = persistReducer(resPersistConfig, resReducer);
 
 export const rootReducer = combineReducers({  
   lawyer: persistedLawyerReducer,
   article: persistedArticleReducer,
-  reply: persistedReplyReducer      })   
+  reply: persistedReplyReducer   ,
+  res: persistedResReducer   })   

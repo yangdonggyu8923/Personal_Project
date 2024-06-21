@@ -13,16 +13,6 @@ export const findAllLawyersAPI = async (page :number)=>{
     }
 }
 
-export const crawlingLawyersAPI = async (lawyer: ILawyers) => {
-    try {
-        console.log(` 크롤링API에 넘어온 파라미터 : ${JSON.stringify(lawyer)}`)
-        const response = await instance().get('/lawyers/crawl')
-        return response.data
-    } catch (error) {
-        console.log(error)
-        return error
-    }
-}
 
 export const findLawyerByIdAPI = async (id: number) => {
     try {

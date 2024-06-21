@@ -38,4 +38,7 @@ export const linkButtonTitles = [
     {id:3, title:'변호사목록', path:`${PG.LAWYER}/list`} ,
     {id:4, title:'게시글목록', path:`${PG.ARTICLE}/list`} ,
     {id:5, title:'변호사페이지', path:`${PG.LAWYER}/update/${isValidToken(token)? jwtDecode<any>(parseCookies().accessToken).lawyerId:0}`},
+    {id:6, title:'예약하기', path:`${PG.RES}`},
+    {id:7, title:'알림보내기', path:`${PG.NOTICE}`},
+    {id:8, title:'알림받기', path:`${PG.LNOTICE}`},
 ];
